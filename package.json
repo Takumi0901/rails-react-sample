@@ -1,0 +1,10 @@
+{
+  "name": "rails-on-react-sample",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "^3.2.2"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.11.1"
+  }
+}
