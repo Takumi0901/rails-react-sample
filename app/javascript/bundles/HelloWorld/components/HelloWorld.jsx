@@ -30,7 +30,7 @@ export default class HelloWorld extends React.Component {
         <hr />
         <form >
           <label htmlFor="name">
-            Say hello to:
+            hoge! Say hello to:
           </label>
           <input
             id="name"
