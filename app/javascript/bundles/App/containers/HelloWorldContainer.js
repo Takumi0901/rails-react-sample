@@ -2,10 +2,10 @@
 
 import { connect } from 'react-redux';
 import HelloWorld from '../components/HelloWorld';
-import * as actions from '../actions/helloWorldActionCreators';
+import {actions} from '../redux/modules/HelloWorldReducer';
 
 // Which part of the Redux global state does our component want to receive as props?
-const mapStateToProps = (state) => ({ name: state.name });
+const mapStateToProps = (state) => ({ name: state.helloWorld.name });
 
 // Don't forget to actually use connect!
 // Note that we don't export HelloWorld, but the redux "connected" version of it.

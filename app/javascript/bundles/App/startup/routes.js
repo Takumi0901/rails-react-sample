@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 
-import HelloWorldApp from './HelloWorldApp'
+import HelloWorldApp from './App'
 import Sample from '../containers/Sample'
 import HelloWorldContainer from '../containers/HelloWorldContainer'
 
