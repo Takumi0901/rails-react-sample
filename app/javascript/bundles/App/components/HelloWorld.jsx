@@ -18,15 +18,11 @@ export default class HelloWorld extends React.Component {
     this.state = { name: this.props.name };
   }
 
-  updateName = (name) => {
-    this.setState({ name });
-  };
-
   render() {
     return (
       <div>
         <h3>
-          Hello, {this.state.name}!
+          Hello, {this.props.name}!
         </h3>
         <p><Link to={"/"}>sampleへ</Link></p>
         <hr />
@@ -37,8 +33,8 @@ export default class HelloWorld extends React.Component {
           <input
             id="name"
             type="text"
-            value={this.state.name}
-            onChange={(e) => this.updateName(e.target.value)}
+            value={this.props.name}
+            onChange={(e) => this.props.updateName(e.target.value)}
           />
         </form>
       </div>
