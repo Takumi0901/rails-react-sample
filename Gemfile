@@ -58,3 +58,4 @@ gem 'ffi', '1.9.18'
 gem 'webpacker', github: 'rails/webpacker'
 gem 'react_on_rails', '10.0.2'
 gem 'mini_racer', platforms: :ruby
+gem 'mysql2'
