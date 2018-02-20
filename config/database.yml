@@ -1,7 +1,7 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  database: react_on_rails_sample
+  database: react_rails_sample
   pool: 5
   username: rails
   password: hoge
@@ -10,7 +10,7 @@ default: &default
 development:
   adapter: mysql2
   encoding: utf8
-  database: react_on_rails_sample
+  database: react_rails_sample
   pool: 5
   username: root
   password: root
