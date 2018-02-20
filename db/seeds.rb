@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+@book = Book.new
+@book.name = 'ドラゴンボール'
+@book.about = '探そうぜ！ドラゴンボール'
+@book.save
+
+@book = Book.new
+@book.name = 'ワンピース'
+@book.about = '海賊王に俺はなる!'
+@book.save
