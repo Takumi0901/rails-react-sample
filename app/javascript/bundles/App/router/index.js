@@ -22,7 +22,7 @@ const server = (props) => {
 }
 
 const Router = (props) => {
-  return typeof window.document !== 'undefined' ? client(props) : server(props)
+  return typeof window !== 'undefined' ? client(props) : server(props)
 }
 
 export default Router
