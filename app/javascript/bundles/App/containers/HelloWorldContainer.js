@@ -2,12 +2,28 @@
 
 import { connect } from 'react-redux';
 import HelloWorld from '../components/HelloWorld';
-import {actions} from '../redux/modules/HelloWorldReducer';
+import {actions} from '../redux/modules/HelloWorldReducer'
+import { graphql, compose } from 'react-apollo'
+import gql from 'graphql-tag'
 
-// Which part of the Redux global state does our component want to receive as props?
-const mapStateToProps = (state) => ({ name: state.helloWorld.name });
+const fetchAllBooks = gql`
+  query {
+    allBooks {
+      id
+      name
+      about
+    }
+  }
+`
 
-// Don't forget to actually use connect!
-// Note that we don't export HelloWorld, but the redux "connected" version of it.
-// See https://github.com/reactjs/react-redux/blob/master/docs/api.md#examples
-export default connect(mapStateToProps, actions)(HelloWorld);
+const mapStateToProps = (state) => {
+  return ({ name: state.helloWorld.name })
+}
+
+export default compose(connect(mapStateToProps, actions),
+  graphql(fetchAllBooks, {
+    props: ({ data }) => ({
+      allBooks: data.allBooks
+    })
+  })
+)(HelloWorld);

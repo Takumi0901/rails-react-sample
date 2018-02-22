@@ -59,3 +59,5 @@ gem 'webpacker', github: 'rails/webpacker'
 gem 'react_on_rails', '10.0.2'
 gem 'mini_racer', platforms: :ruby
 gem 'mysql2'
+gem 'graphql'
+gem 'graphiql-rails', group: :development
