@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { ApolloProvider } from 'react-apollo'
 import configureStore from '../redux/Store'
 import Router from '../router/index'
-import Wrap from '../components/Wrap'
+import Wrapper from '../components/Wrapper'
 import routes from './routes'
 
 import { ApolloClient } from 'apollo-client'
@@ -26,9 +26,9 @@ const App = (props) => (
   <ApolloProvider client={client}>
     <Provider store={configureStore(props)}>
       <Router>
-        <Wrap>
+        <Wrapper>
           {routes}
-        </Wrap>
+        </Wrapper>
       </Router>
     </Provider>
   </ApolloProvider>

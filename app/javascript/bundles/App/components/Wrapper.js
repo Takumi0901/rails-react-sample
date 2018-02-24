@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import NavBar from './NavBar'
 
-class Wrap extends Component {
+class Wrapper extends Component {
   constructor() {
     super()
     this.state = {
@@ -16,15 +17,15 @@ class Wrap extends Component {
 
   render() {
     return (
-      <div>
+      <MuiThemeProvider>
         <NavBar
           onToggle={() => this.handleToggle()}
           open={this.state.open}
         />
         {this.props.children}
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
 
-export default Wrap;
+export default Wrapper

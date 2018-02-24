@@ -1,7 +1,6 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 
-import HelloWorldApp from './App'
 import Top from '../containers/Top'
 import HelloWorldContainer from '../containers/HelloWorldContainer'
 

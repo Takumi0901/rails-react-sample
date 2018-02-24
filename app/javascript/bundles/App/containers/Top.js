@@ -1,17 +1,27 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
+import Books from '../components/Books'
+import {actions} from '../redux/modules/HelloWorldReducer'
+import { graphql, compose } from 'react-apollo'
+import gql from 'graphql-tag'
 
-export default class Sample extends React.Component {
-  constructor(props) {
-    super(props);
+const fetchAllBooks = gql`
+  query {
+    allBooks {
+      id
+      name
+      about
+    }
   }
+`
 
-  render() {
-    return (
-      <div>
-        <h3>sample</h3>
-        <p><Link to={"/hello_world"}>hello_worldへ</Link></p>
-      </div>
-    )
-  }
+const mapStateToProps = (state) => {
+  return ({ name: state.helloWorld.name })
 }
+
+export default compose(connect(mapStateToProps, actions),
+  graphql(fetchAllBooks, {
+    props: ({ data }) => ({
+      allBooks: data.allBooks
+    })
+  })
+)(Books);
