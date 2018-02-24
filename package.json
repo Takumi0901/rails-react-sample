@@ -1,6 +1,9 @@
 {
   "name": "rails-on-react-sample",
   "private": true,
+  "scripts": {
+    "start": "foreman start -f Procfile.dev-server"
+  },
   "dependencies": {
     "@rails/webpacker": "^3.2.2",
     "apollo-boost": "^0.1.1",
