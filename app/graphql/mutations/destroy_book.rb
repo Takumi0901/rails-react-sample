@@ -9,9 +9,8 @@ Mutations::DestroyBook = GraphQL::Relay::Mutation.define do
   resolve ->(_obj, args, ctx) {
     book = Book.find_by_id(args[:id])
     return { errors: 'Comment not found' } if book.nil?
-    article = book
-    book.destroy
-
-    { book: article }
+    book.deleted = true
+    book.save
+    { book: book }
   }
 end
