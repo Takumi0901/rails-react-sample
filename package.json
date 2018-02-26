@@ -13,16 +13,17 @@
     "babel-preset-react": "^6.24.1",
     "graphql": "^0.13.1",
     "graphql-tag": "^2.8.0",
-    "material-ui": "^0.20.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-apollo": "^2.0.4",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-on-rails": "^10.1.1",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
+    "redux-form": "^7.2.3",
     "redux-logger": "^3.0.6"
   },
   "devDependencies": {

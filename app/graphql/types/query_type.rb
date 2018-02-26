@@ -21,7 +21,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :allBooks, types[Types::BookType] do
     description "An example field added by the generator"
     resolve ->(obj, args, ctx) {
-      Book.active
+      Book.active.order("id DESC")
     }
   end
 end

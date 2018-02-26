@@ -14,14 +14,41 @@ const fetchAllBooks = gql`
   }
 `
 
+const createBook = gql`
+  mutation CreateBook($name: String!, $about: String!) {
+    CreateBook(input: {name: $name, about: $about}) {
+      book {
+        name
+        about
+      }
+    }
+  }
+`
+
+const destroyBook = gql`
+  mutation DestroyBook($id: ID!) {
+    DestroyBook(input: {id: $id}) {
+      book {id}
+    }
+  }
+`
+
+const getBooks = graphql(fetchAllBooks, {
+  props: ({ data }) => ({
+    allBooks: data.allBooks
+  })
+})
+
 const mapStateToProps = (state) => {
   return ({ name: state.helloWorld.name })
 }
 
 export default compose(connect(mapStateToProps, actions),
-  graphql(fetchAllBooks, {
-    props: ({ data }) => ({
-      allBooks: data.allBooks
-    })
-  })
+  getBooks,
+  graphql(createBook, {
+    name: 'createBook'
+  }),
+  graphql(destroyBook, {
+    name: 'destroyBook'
+  }),
 )(Books);

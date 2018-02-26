@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import NavBar from './NavBar'
+import {
+  Navbar
+} from 'react-bootstrap'
 
 class Wrapper extends Component {
   constructor() {
@@ -9,21 +10,21 @@ class Wrapper extends Component {
       open: false
     }
   }
-  handleToggle() {
-    this.setState({
-      open: !this.state.open
-    })
-  }
 
   render() {
     return (
-      <MuiThemeProvider>
-        <NavBar
-          onToggle={() => this.handleToggle()}
-          open={this.state.open}
-        />
-        {this.props.children}
-      </MuiThemeProvider>
+      <div>
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a href="#home">React-Bootstrap</a>
+            </Navbar.Brand>
+          </Navbar.Header>
+        </Navbar>
+        <div className={"container"}>
+          {this.props.children}
+        </div>
+      </div>
     );
   }
 }
