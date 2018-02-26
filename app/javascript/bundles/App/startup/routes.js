@@ -1,13 +1,12 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 
-import HelloWorldApp from './App'
-import Sample from '../containers/Sample'
+import Top from '../containers/Top'
 import HelloWorldContainer from '../containers/HelloWorldContainer'
 
 export default (
   <Switch>
-    <Route exact path="/" component={Sample}/>
+    <Route exact path="/" component={Top}/>
     <Route exact path="/hello_world" component={HelloWorldContainer}/>
   </Switch>
 )
