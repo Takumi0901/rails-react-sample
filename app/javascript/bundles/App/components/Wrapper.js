@@ -21,9 +21,7 @@ class Wrapper extends Component {
             </Navbar.Brand>
           </Navbar.Header>
         </Navbar>
-        <div className={"container"}>
-          {this.props.children}
-        </div>
+        {this.props.children}
       </div>
     );
   }

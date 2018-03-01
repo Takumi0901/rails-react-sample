@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import {reduxForm} from 'redux-form'
 import Books from '../components/Books'
 import {actions} from '../redux/modules/HelloWorldReducer'
 import { graphql, compose } from 'react-apollo'
@@ -43,6 +44,11 @@ const mapStateToProps = (state) => {
   return ({ name: state.helloWorld.name })
 }
 
+let BookCreateForm = reduxForm({
+  form: 'bookCreateForm',
+  enableReinitialize: true
+})(Books)
+
 export default compose(connect(mapStateToProps, actions),
   getBooks,
   graphql(createBook, {
@@ -51,4 +57,4 @@ export default compose(connect(mapStateToProps, actions),
   graphql(destroyBook, {
     name: 'destroyBook'
   }),
-)(Books);
+)(BookCreateForm);
