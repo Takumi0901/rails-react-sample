@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
 import {reduxForm} from 'redux-form'
-import {actions} from '../redux/modules/HelloWorldReducer'
+import {actions} from '../../redux/modules/HelloWorldReducer'
 import { graphql, compose } from 'react-apollo'
 import {withRouter} from 'react-router-dom'
-import EditBook from "../components/Edit";
+import EditBook from "../../components/templates/Edit"
 import {
   FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY, UPDATE_BOOK_MUTATION, DESTROY_BOOK_MUTATION
-} from '../apollo/Books'
+} from '../../apollo/Books'
 
 
 const mapStateToProps = (state) => {

@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import React from 'react'
-import {FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY} from '../apollo/Books'
-import Foundation from './Foundation'
-import FormContent from './FormContent'
+import {FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY} from '../../apollo/Books'
+import Foundation from '../organisms/Foundation'
+import {UpdateBookContent} from '../molecules/UpdateBookContent'
 
 export default class EditBook extends React.Component {
   constructor() {
@@ -16,12 +16,11 @@ export default class EditBook extends React.Component {
       refetchQueries: [{
         query: FETCH_BOOK_QUERY,
         variables: {
-          id: match.params.bookId,
-        },
+          id: match.params.bookId
+        }
       }]
     })
   }
-
 
   onClickDelete() {
     const {match, history, destroyBook} = this.props
@@ -38,12 +37,12 @@ export default class EditBook extends React.Component {
     const {book, books, handleSubmit} = this.props
     return (
       <Foundation list={books.list}>
-        <FormContent
+        <UpdateBookContent
           card={{title: book.item && `${book.item.name}`, subtitle: '本の編集をします'}}
           onSubmit={{label: '登録する', method: handleSubmit(this.onSubmit.bind(this))}}
           onDelete={{label: "削除する", method: this.onClickDelete.bind(this)}}
         />
       </Foundation>
-    );
+    )
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import NavBar from './NavBar'
+import {NavBar} from '../molecules/NavBar'
 
 class Foundation extends Component {
   constructor() {
@@ -16,7 +16,7 @@ class Foundation extends Component {
   }
 
   render() {
-    const {list} = this.props
+    const {list, children} = this.props
     return (
       <MuiThemeProvider>
         <div>
@@ -26,11 +26,11 @@ class Foundation extends Component {
             list={list}
           />
           <div style={{width: "750px", margin: "0 0 0 276px", padding: "92px 16px 0"}}>
-            {this.props.children}
+            {children}
           </div>
         </div>
       </MuiThemeProvider>
-    );
+    )
   }
 }
 
