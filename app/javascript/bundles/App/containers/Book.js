@@ -45,6 +45,17 @@ const destroyBook = gql`
   }
 `
 
+const updateBook = gql`
+  mutation UpdateBook($id: ID!, $name: String!, $about: String!) {
+    UpdateBook(input: {id: $id, name: $name, about: $about}) {
+      book {
+        name
+        about
+      }
+    }
+  }
+`
+
 const getBooks = graphql(fetchAllBooks, {
   props: ({ data }) => ({
     allBooks: data.allBooks
@@ -87,6 +98,9 @@ export default withRouter(compose(connect(mapStateToProps, actions),
   }),
   graphql(createBook, {
     name: 'createBook'
+  }),
+  graphql(updateBook, {
+    name: 'updateBook'
   }),
   graphql(destroyBook, {
     name: 'destroyBook'

@@ -18,6 +18,16 @@ const fetchAllBooks = gql`
   }
 `
 
+const fetchBook = gql`
+  query fetchBook($id: ID!){
+    book(id: $id) {
+      id
+      name
+      about
+    }
+  }
+`
+
 const inputForm = ({input, hintText, floatingLabelText, floatingLabelFixed, fullWidth, multiLine, row, rowsMax}) => {
   return (
     <TextField
@@ -39,14 +49,16 @@ export default class EditBook extends React.Component {
   }
 
   onSubmit(values) {
-    const {reset} = this.props
-    this.props.createBook({
-      variables: {name: values.name, about: values.about},
+    const {match} = this.props
+    this.props.updateBook({
+      variables: {id: match.params.bookId, name: values.name, about: values.about},
       refetchQueries: [{
-        query: fetchAllBooks
+        query: fetchBook,
+        variables: {
+          id: match.params.bookId,
+        },
       }]
     })
-    reset()
   }
 
 
@@ -80,7 +92,7 @@ export default class EditBook extends React.Component {
                   component={inputForm}
                   name="about"
                   hintText="例) cha-ra he-cha-ra"
-                  floatingLabelText="本の説明分を入力"
+                  floatingLabelText="本の説明文を入力"
                   multiLine={true}
                   fullWidth={true}
                   rows={4}
