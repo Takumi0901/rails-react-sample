@@ -3,42 +3,7 @@ import {reduxForm} from 'redux-form'
 import Books from '../components/Books'
 import {actions} from '../redux/modules/HelloWorldReducer'
 import { graphql, compose } from 'react-apollo'
-import gql from 'graphql-tag'
-
-const fetchAllBooks = gql`
-  query {
-    allBooks {
-      id
-      name
-      about
-    }
-  }
-`
-
-const createBook = gql`
-  mutation CreateBook($name: String!, $about: String!) {
-    CreateBook(input: {name: $name, about: $about}) {
-      book {
-        name
-        about
-      }
-    }
-  }
-`
-
-const destroyBook = gql`
-  mutation DestroyBook($id: ID!) {
-    DestroyBook(input: {id: $id}) {
-      book {id}
-    }
-  }
-`
-
-const getBooks = graphql(fetchAllBooks, {
-  props: ({ data }) => ({
-    allBooks: data.allBooks
-  })
-})
+import {FETCH_ALL_BOOKS_QUERY, CREATE_BOOK_MUTATION} from '../apollo/Books'
 
 const mapStateToProps = (state) => {
   return ({ name: state.helloWorld.name })
@@ -50,11 +15,10 @@ let BookCreateForm = reduxForm({
 })(Books)
 
 export default compose(connect(mapStateToProps, actions),
-  getBooks,
-  graphql(createBook, {
+  graphql(FETCH_ALL_BOOKS_QUERY, {
+    name: 'books'
+  }),
+  graphql(CREATE_BOOK_MUTATION, {
     name: 'createBook'
-  }),
-  graphql(destroyBook, {
-    name: 'destroyBook'
-  }),
+  })
 )(BookCreateForm);

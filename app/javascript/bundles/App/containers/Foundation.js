@@ -1,7 +1,7 @@
 // Simple example of a React "smart" component
 
 import { connect } from 'react-redux';
-import HelloWorld from '../components/HelloWorld';
+import Foundation from '../components/Foundation';
 import {actions} from '../redux/modules/HelloWorldReducer'
 import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
@@ -17,7 +17,7 @@ const fetchAllBooks = gql`
 `
 
 const mapStateToProps = (state) => {
-  return ({ name: state.helloWorld.name })
+  return ({})
 }
 
 export default compose(connect(mapStateToProps, actions),
@@ -26,4 +26,4 @@ export default compose(connect(mapStateToProps, actions),
       allBooks: data.allBooks
     })
   })
-)(HelloWorld);
+)(Foundation);
