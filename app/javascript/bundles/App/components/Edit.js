@@ -33,7 +33,7 @@ const inputForm = ({input, hintText, floatingLabelText, floatingLabelFixed, full
   )
 }
 
-export default class Books extends React.Component {
+export default class EditBook extends React.Component {
   constructor() {
     super()
   }
@@ -60,15 +60,12 @@ export default class Books extends React.Component {
   }
 
   render() {
-    const {allBooks, handleSubmit} = this.props
-    console.log('******************')
-    console.log(allBooks)
-    console.log('******************')
+    const {book, allBooks, handleSubmit} = this.props
     return (
       <Foundation list={allBooks}>
         <div style={{width: "750px", margin: "0 0 0 276px", padding: "92px 16px 0"}}>
           <Card>
-            <CardTitle title="本の登録" subtitle="本の登録をします" />
+            <CardTitle title={book && `${book.name}`} subtitle="本の編集をします" />
             <CardText>
               <form>
                 <Field
