@@ -94,7 +94,6 @@ export default class Books extends React.Component {
             <CardActions>
               <RaisedButton
                 label="登録する"
-                fullWidth={true}
                 onClick={handleSubmit(this.onSubmit.bind(this))}
                 primary={true}
               />

@@ -62,13 +62,15 @@ export default class EditBook extends React.Component {
   }
 
 
-  onClickDelete(id) {
+  onClickDelete() {
+    const {match, history} = this.props
     this.props.destroyBook({
-      variables: {id: id},
+      variables: {id: match.params.bookId},
       refetchQueries: [{
         query: fetchAllBooks
       }]
     })
+    history.push('/')
   }
 
   render() {
@@ -102,10 +104,14 @@ export default class EditBook extends React.Component {
             </CardText>
             <CardActions>
               <RaisedButton
-                label="登録する"
-                fullWidth={true}
+                label="更新する"
                 onClick={handleSubmit(this.onSubmit.bind(this))}
                 primary={true}
+              />
+              <RaisedButton
+                label="削除する"
+                onClick={this.onClickDelete.bind(this)}
+                secondary={true}
               />
             </CardActions>
           </Card>
