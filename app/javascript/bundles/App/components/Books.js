@@ -2,21 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {Link} from 'react-router-dom'
 import {Field} from 'redux-form'
-import gql from "graphql-tag";
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField';
-import {Card, CardActions, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardTitle, CardText} from 'material-ui/Card'
+import {FETCH_ALL_BOOKS_QUERY} from '../apollo/Books'
 import Foundation from './Foundation'
-
-const fetchAllBooks = gql`
-  query {
-    allBooks {
-      id
-      name
-      about
-    }
-  }
-`
 
 const inputForm = ({input, hintText, floatingLabelText, floatingLabelFixed, fullWidth, multiLine, row, rowsMax}) => {
   return (
@@ -39,33 +29,20 @@ export default class Books extends React.Component {
   }
 
   onSubmit(values) {
-    const {reset} = this.props
-    this.props.createBook({
+    const {reset, createBook} = this.props
+    createBook({
       variables: {name: values.name, about: values.about},
       refetchQueries: [{
-        query: fetchAllBooks
+        query: FETCH_ALL_BOOKS_QUERY
       }]
     })
     reset()
   }
 
-
-  onClickDelete(id) {
-    this.props.destroyBook({
-      variables: {id: id},
-      refetchQueries: [{
-        query: fetchAllBooks
-      }]
-    })
-  }
-
   render() {
-    const {allBooks, handleSubmit} = this.props
-    console.log('******************')
-    console.log(allBooks)
-    console.log('******************')
+    const {books, handleSubmit} = this.props
     return (
-      <Foundation list={allBooks}>
+      <Foundation list={books.list}>
         <div style={{width: "750px", margin: "0 0 0 276px", padding: "92px 16px 0"}}>
           <Card>
             <CardTitle title="本の登録" subtitle="本の登録をします" />

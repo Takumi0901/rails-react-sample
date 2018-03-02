@@ -3,64 +3,11 @@ import {reduxForm} from 'redux-form'
 import {actions} from '../redux/modules/HelloWorldReducer'
 import { graphql, compose } from 'react-apollo'
 import {withRouter} from 'react-router-dom'
-import gql from 'graphql-tag'
 import EditBook from "../components/Edit";
+import {
+  FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY, UPDATE_BOOK_MUTATION, DESTROY_BOOK_MUTATION
+} from '../apollo/Books'
 
-const fetchAllBooks = gql`
-  query {
-    allBooks {
-      id
-      name
-      about
-    }
-  }
-`
-
-const fetchBook = gql`
-  query fetchBook($id: ID!){
-    book(id: $id) {
-      id
-      name
-      about
-    }
-  }
-`
-
-const createBook = gql`
-  mutation CreateBook($name: String!, $about: String!) {
-    CreateBook(input: {name: $name, about: $about}) {
-      book {
-        name
-        about
-      }
-    }
-  }
-`
-
-const destroyBook = gql`
-  mutation DestroyBook($id: ID!) {
-    DestroyBook(input: {id: $id}) {
-      book {id}
-    }
-  }
-`
-
-const updateBook = gql`
-  mutation UpdateBook($id: ID!, $name: String!, $about: String!) {
-    UpdateBook(input: {id: $id, name: $name, about: $about}) {
-      book {
-        name
-        about
-      }
-    }
-  }
-`
-
-const getBooks = graphql(fetchAllBooks, {
-  props: ({ data }) => ({
-    allBooks: data.allBooks
-  })
-})
 
 const mapStateToProps = (state) => {
   return ({ name: state.helloWorld.name })
@@ -74,7 +21,7 @@ let BookEditForm = reduxForm({
 
 BookEditForm = connect(
   (state, props) => {
-    const book = props.book && props.book
+    const book = props.book && props.book.item
     const initialValues = {
       name: book && book.name,
       about: book && book.about
@@ -85,24 +32,21 @@ BookEditForm = connect(
 )(BookEditForm)
 
 export default withRouter(compose(connect(mapStateToProps, actions),
-  getBooks,
-  graphql(fetchBook, {
+  graphql(FETCH_ALL_BOOKS_QUERY, {
+    name: 'books'
+  }),
+  graphql(FETCH_BOOK_QUERY, {
+    name: 'book',
     options: (ownProps) => ({
       variables: {
         id: parseInt(ownProps.match.params.bookId)
       }
-    }),
-    props: ({ data }) => ({
-      book: data.book
     })
   }),
-  graphql(createBook, {
-    name: 'createBook'
-  }),
-  graphql(updateBook, {
+  graphql(UPDATE_BOOK_MUTATION, {
     name: 'updateBook'
   }),
-  graphql(destroyBook, {
+  graphql(DESTROY_BOOK_MUTATION, {
     name: 'destroyBook'
   }),
 )(BookEditForm))
