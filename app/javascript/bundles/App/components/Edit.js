@@ -1,27 +1,8 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import {Link} from 'react-router-dom'
-import {Field} from 'redux-form'
+import React from 'react'
 import {FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY} from '../apollo/Books'
-import RaisedButton from 'material-ui/RaisedButton'
-import TextField from 'material-ui/TextField';
-import {Card, CardActions, CardTitle, CardText} from 'material-ui/Card';
 import Foundation from './Foundation'
-
-const inputForm = ({input, hintText, floatingLabelText, floatingLabelFixed, fullWidth, multiLine, row, rowsMax}) => {
-  return (
-    <TextField
-      {...input}
-      hintText={hintText}
-      floatingLabelText={floatingLabelText}
-      floatingLabelFixed={floatingLabelFixed}
-      fullWidth={fullWidth}
-      multiLine={multiLine}
-      rows={row}
-      rowsMax={rowsMax}
-    />
-  )
-}
+import FormContent from './FormContent'
 
 export default class EditBook extends React.Component {
   constructor() {
@@ -29,8 +10,8 @@ export default class EditBook extends React.Component {
   }
 
   onSubmit(values) {
-    const {match} = this.props
-    this.props.updateBook({
+    const {match, updateBook} = this.props
+    updateBook({
       variables: {id: match.params.bookId, name: values.name, about: values.about},
       refetchQueries: [{
         query: FETCH_BOOK_QUERY,
@@ -43,8 +24,8 @@ export default class EditBook extends React.Component {
 
 
   onClickDelete() {
-    const {match, history} = this.props
-    this.props.destroyBook({
+    const {match, history, destroyBook} = this.props
+    destroyBook({
       variables: {id: match.params.bookId},
       refetchQueries: [{
         query: FETCH_ALL_BOOKS_QUERY
@@ -57,45 +38,11 @@ export default class EditBook extends React.Component {
     const {book, books, handleSubmit} = this.props
     return (
       <Foundation list={books.list}>
-        <div style={{width: "750px", margin: "0 0 0 276px", padding: "92px 16px 0"}}>
-          <Card>
-            <CardTitle title={book.item && `${book.item.name}`} subtitle="本の編集をします" />
-            <CardText>
-              <form>
-                <Field
-                  name="name"
-                  component={inputForm}
-                  hintText="例) ドラゴンボール"
-                  floatingLabelText="本のタイトルを入力"
-                  floatingLabelFixed={true}
-                  fullWidth={true}
-                />
-                <Field
-                  component={inputForm}
-                  name="about"
-                  hintText="例) cha-ra he-cha-ra"
-                  floatingLabelText="本の説明文を入力"
-                  multiLine={true}
-                  fullWidth={true}
-                  rows={4}
-                  rowsMax={4}
-                />
-              </form>
-            </CardText>
-            <CardActions>
-              <RaisedButton
-                label="更新する"
-                onClick={handleSubmit(this.onSubmit.bind(this))}
-                primary={true}
-              />
-              <RaisedButton
-                label="削除する"
-                onClick={this.onClickDelete.bind(this)}
-                secondary={true}
-              />
-            </CardActions>
-          </Card>
-        </div>
+        <FormContent
+          card={{title: book.item && `${book.item.name}`, subtitle: '本の編集をします'}}
+          onSubmit={{label: '登録する', method: handleSubmit(this.onSubmit.bind(this))}}
+          onDelete={{label: "削除する", method: this.onClickDelete.bind(this)}}
+        />
       </Foundation>
     );
   }

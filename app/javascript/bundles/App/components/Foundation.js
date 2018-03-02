@@ -19,12 +19,16 @@ class Foundation extends Component {
     const {list} = this.props
     return (
       <MuiThemeProvider>
-        <NavBar
-          onToggle={() => this.handleToggle()}
-          open={this.state.open}
-          list={list}
-        />
-        {this.props.children}
+        <div>
+          <NavBar
+            onToggle={() => this.handleToggle()}
+            open={this.state.open}
+            list={list}
+          />
+          <div style={{width: "750px", margin: "0 0 0 276px", padding: "92px 16px 0"}}>
+            {this.props.children}
+          </div>
+        </div>
       </MuiThemeProvider>
     );
   }
