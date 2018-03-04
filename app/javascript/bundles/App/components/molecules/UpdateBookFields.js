@@ -1,9 +1,9 @@
 import React from "react"
 import {Field} from 'redux-form'
-import {FormField} from "../atoms/FormField"
+import FormField from "../atoms/FormField"
 import {CardText} from 'material-ui/Card'
 
-export const UpdateBookFields = () => (
+const UpdateBookFields = () => (
   <CardText>
     <form>
       <Field
@@ -27,3 +27,5 @@ export const UpdateBookFields = () => (
     </form>
   </CardText>
 )
+
+export default UpdateBookFields

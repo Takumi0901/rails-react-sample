@@ -1,7 +1,7 @@
 import React from "react"
 import TextField from 'material-ui/TextField'
 
-export const FormField = (props) => (
+const FormField = (props) => (
   <TextField
     {...props.input}
     hintText={props.hintText}
@@ -13,3 +13,5 @@ export const FormField = (props) => (
     rowsMax={props.rowsMax}
   />
 )
+
+export default FormField
