@@ -1,7 +1,7 @@
 import React from 'react'
-import NavBar from '../atoms/NavBar'
-import Container from '../atoms/Container'
-import SideBar from '../molecules/SideBar'
+import NavBar from '../../components/atoms/NavBar'
+import Container from '../../components/atoms/Container'
+import SideBar from '../../components/organisms/SideBar'
 
 const FoundationHOC = (WrappedComponent) => {
   class Foundation extends React.Component {

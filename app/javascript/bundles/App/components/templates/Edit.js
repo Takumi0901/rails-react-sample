@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import {FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY} from '../../apollo/Books'
-import FoundationHOC from '../organisms/FoundationHOC'
-import UpdateBookContent from '../molecules/UpdateBookContent'
+import FoundationHOC from '../../containers/hoc/FoundationHOC'
+import UpdateBookContent from '../organisms/UpdateBookContent'
 
 class EditBook extends React.Component {
   constructor() {
