@@ -1,7 +1,7 @@
 import React from "react"
 import {Card, CardTitle} from 'material-ui/Card'
-import UpdateBookFields from './UpdateBookFields'
-import UpdateBookActions from './UpdateBookActions'
+import UpdateBookFields from '../molecules/UpdateBookFields'
+import UpdateBookActions from '../molecules/UpdateBookActions'
 
 const UpdateBookContent = ({card, onSubmit, onDelete}) => (
   <Card>
