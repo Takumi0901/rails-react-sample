@@ -1,8 +1,8 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 
-import Top from '../containers/Top'
-import Book from '../containers/Book'
+import Top from '../containers/pages/Top'
+import Book from '../containers/pages/Book'
 
 export default (
   <Switch>
