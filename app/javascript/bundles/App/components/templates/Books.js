@@ -3,6 +3,7 @@ import React from 'react'
 import {FETCH_ALL_BOOKS_QUERY} from '../../apollo/Books'
 import Foundation from '../organisms/Foundation'
 import {UpdateBookContent} from '../molecules/UpdateBookContent'
+import MyComponent from '../organisms/Hoc'
 
 export default class Books extends React.Component {
   constructor() {
@@ -24,6 +25,7 @@ export default class Books extends React.Component {
     const {books, handleSubmit} = this.props
     return (
       <Foundation list={books.list}>
+        <MyComponent/>
         <UpdateBookContent
           card={{title: '本の登録', subtitle: '本の登録をします'}}
           onSubmit={{label: '登録する', method: handleSubmit(this.onSubmit.bind(this))}}
