@@ -1,7 +1,8 @@
+// @flow
 import React from "react"
 import {Field} from 'redux-form'
 import FormField from "../atoms/FormField"
-import {CardText} from 'material-ui/Card'
+import CardText from 'material-ui/Card/CardText'
 
 const UpdateBookFields = () => (
   <CardText>

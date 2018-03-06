@@ -15,7 +15,7 @@
     "flow"
   ],
   "plugins": [
-    "transform-class-properties",
+    "babel-plugin-transform-flow-strip-types",
     "syntax-dynamic-import",
     "transform-object-rest-spread",
     [

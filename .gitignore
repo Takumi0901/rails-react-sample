@@ -18,6 +18,7 @@
 !/tmp/.keep
 
 /node_modules
+/flow-typed
 /yarn-error.log
 
 .byebug_history

@@ -1,6 +1,5 @@
 [ignore]
-bundle.js
-.*/node_modules/*
+<PROJECT_ROOT>/node_modules/*
 [include]
 
 [libs]
