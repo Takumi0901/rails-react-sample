@@ -1,0 +1,12 @@
+[ignore]
+bundle.js
+.*/node_modules/*
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]
