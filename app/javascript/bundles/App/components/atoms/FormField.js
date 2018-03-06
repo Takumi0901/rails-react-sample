@@ -1,7 +1,19 @@
+// @flow
 import React from "react"
-import TextField from 'material-ui/TextField'
+import TextField from 'material-ui/TextField/TextField'
 
-const FormField = (props) => (
+type Props = {
+  input: Object,
+  hintText: string,
+  floatingLabelText: string,
+  floatingLabelFixed: string,
+  fullWidth: number,
+  multiLine: boolean,
+  row: number,
+  rowsMax: number
+}
+
+const FormField = (props: Props) => (
   <TextField
     {...props.input}
     hintText={props.hintText}

@@ -11,9 +11,11 @@
         "useBuiltIns": true
       }
     ],
-    "react"
+    "react",
+    "flow"
   ],
   "plugins": [
+    "babel-plugin-transform-flow-strip-types",
     "syntax-dynamic-import",
     "transform-object-rest-spread",
     [

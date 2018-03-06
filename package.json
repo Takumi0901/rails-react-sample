@@ -2,7 +2,8 @@
   "name": "rails-on-react-sample",
   "private": true,
   "scripts": {
-    "start": "foreman start -f Procfile.dev-server"
+    "start": "yarn run flow && foreman start -f Procfile.dev-server",
+    "flow": "flow"
   },
   "dependencies": {
     "@rails/webpacker": "^3.2.2",
@@ -29,8 +30,14 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-flow": "^6.23.0",
     "eslint": "^4.18.1",
+    "eslint-plugin-flowtype": "^2.46.1",
     "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "^0.66.0",
+    "flow-typed": "^2.3.0",
     "webpack-dev-server": "^2.11.1"
   }
 }

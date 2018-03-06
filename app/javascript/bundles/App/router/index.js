@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import { renderToString } from 'react-dom/server'
 import { BrowserRouter, StaticRouter } from 'react-router-dom'
@@ -21,7 +22,7 @@ const server = (props) => {
   )
 }
 
-const Router = (props) => {
+const Router = (props: Object) => {
   return typeof window !== 'undefined' ? client(props) : server(props)
 }
 
