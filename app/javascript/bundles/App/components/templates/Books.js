@@ -1,10 +1,16 @@
-import PropTypes from 'prop-types'
+// @flow
 import React from 'react'
 import {FETCH_ALL_BOOKS_QUERY} from '../../apollo/Books'
 import FoundationHOC from '../../containers/hoc/FoundationHOC'
 import UpdateBookContent from '../organisms/UpdateBookContent'
 
-class Books extends React.Component {
+type Props = {
+  reset: Function,
+  createBook: Function,
+  handleSubmit: Function
+}
+
+class Books extends React.Component<Props> {
   constructor() {
     super()
   }
@@ -26,6 +32,7 @@ class Books extends React.Component {
       <UpdateBookContent
         card={{title: '本の登録', subtitle: '本の登録をします'}}
         onSubmit={{label: '登録する', method: handleSubmit(this.onSubmit.bind(this))}}
+        onDelete={{}}
       />
     )
   }

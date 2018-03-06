@@ -1,10 +1,19 @@
-import PropTypes from 'prop-types'
+// @flow
 import React from 'react'
 import {FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY} from '../../apollo/Books'
 import FoundationHOC from '../../containers/hoc/FoundationHOC'
 import UpdateBookContent from '../organisms/UpdateBookContent'
 
-class EditBook extends React.Component {
+type Props = {
+  match: Object,
+  updateBook: Function,
+  history: Object,
+  destroyBook: Function,
+  handleSubmit: Function,
+  book: Object
+}
+
+class EditBook extends React.Component<Props> {
   constructor() {
     super()
   }

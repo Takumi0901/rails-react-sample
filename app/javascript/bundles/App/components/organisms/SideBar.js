@@ -1,8 +1,11 @@
+// @flow
 import React from 'react'
-import { AppBar, Drawer, Divider } from 'material-ui'
+import AppBar from 'material-ui/AppBar/AppBar'
+import Drawer from 'material-ui/Drawer/Drawer'
+import Divider from 'material-ui/Divider/Divider'
 import ListItem from '../atoms/ListItem'
 
-const SideBar = ({onToggle, list}) => (
+const SideBar = ({onToggle, list}: {onToggle: Function, list: any}) => (
   <Drawer
     docked={true}
     width={260}

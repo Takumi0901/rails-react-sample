@@ -1,8 +1,9 @@
+// @flow
 import React from "react"
-import RaisedButton from 'material-ui/RaisedButton'
-import {CardActions} from 'material-ui/Card'
+import RaisedButton from 'material-ui/RaisedButton/RaisedButton'
+import CardActions from 'material-ui/Card/CardActions'
 
-const UpdateBookActions = ({onSubmit, onDelete}) => (
+const UpdateBookActions = ({onSubmit, onDelete}: {onSubmit: Object, onDelete: Object}) => (
   <CardActions>
     {onSubmit &&
     <RaisedButton

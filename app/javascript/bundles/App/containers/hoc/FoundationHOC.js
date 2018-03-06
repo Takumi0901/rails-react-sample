@@ -1,10 +1,19 @@
+// @flow
 import React from 'react'
 import NavBar from '../../components/atoms/NavBar'
 import Container from '../../components/atoms/Container'
 import SideBar from '../../components/organisms/SideBar'
 
-const FoundationHOC = (WrappedComponent) => {
-  class Foundation extends React.Component {
+type Props = {
+  books: any
+}
+
+type State = {
+  open: boolean
+}
+
+const FoundationHOC = (WrappedComponent: Object) => {
+  class Foundation extends React.Component<Props, State> {
     constructor() {
       super()
       this.state = {
