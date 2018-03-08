@@ -5,14 +5,14 @@ import CardActions from 'material-ui/Card/CardActions'
 
 const UpdateBookActions = ({onSubmit, onDelete}: {onSubmit: Object, onDelete: Object}) => (
   <CardActions>
-    {onSubmit &&
+    {Object.keys(onSubmit).length > 0 &&
     <RaisedButton
       label={onSubmit.label}
       onClick={onSubmit.method}
       primary={true}
     />
     }
-    {onDelete &&
+    {Object.keys(onDelete).length > 0 &&
     <RaisedButton
       label={onDelete.label}
       onClick={onDelete.method}
