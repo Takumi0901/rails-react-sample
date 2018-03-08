@@ -1,4 +1,50 @@
-# README
+# setup
+
+## インストール
+```
+bundle install
+```
+
+## 必要なら yarnのupgrade
+```
+brew upgrade yarn
+```
+
+## フロント側の諸々install
+```
+yarn install
+```
+
+## フロント側のビルド
+```
+bundle exec bin/webpack
+```
+
+## DB create
+```
+bundle exec rake db:create
+```
+
+## DB migrate
+```
+bundle exec rake db:migrate
+```
+
+## テストデータ挿入
+```
+rake db:seed
+```
+
+## スタート
+```
+yarn start
+```
+
+```
+localhost:3000/
+```
+
+# 参考
 
 - ruby-on-rails
 - React
