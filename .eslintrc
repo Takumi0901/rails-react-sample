@@ -1,0 +1,46 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:flowtype/recommended"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "flowtype"
+  ],
+  "rules": {
+    "indent": [
+      2,
+      2,
+      {"SwitchCase": 1}
+    ],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "semi": [
+      2,
+      "never"
+    ],
+    "no-console": 0,
+    "comma-dangle": [2, "never"],
+    "react/jsx-space-before-closing": [2, "never"]
+  },
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
+  },
+  "globals": {
+    "AjaxZip3": true
+  }
+}
