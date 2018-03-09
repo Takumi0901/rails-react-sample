@@ -1,6 +1,3 @@
-import { connect } from 'react-redux'
-import {reduxForm} from 'redux-form'
-import {actions} from '../../redux/modules/HelloWorldReducer'
 import { graphql, compose } from 'react-apollo'
 import {withRouter} from 'react-router-dom'
 import EditBook from "../../components/templates/Edit"
@@ -9,29 +6,7 @@ import {
 } from '../../apollo/Books'
 
 
-const mapStateToProps = (state) => {
-  return ({ name: state.helloWorld.name })
-}
-
-let BookEditForm = reduxForm({
-  form: 'bookEditForm',
-  enableReinitialize: true
-})(EditBook)
-
-
-BookEditForm = connect(
-  (state, props) => {
-    const book = props.book && props.book.item
-    const initialValues = {
-      name: book && book.name,
-      about: book && book.about
-    }
-
-    return {initialValues}
-  }
-)(BookEditForm)
-
-export default withRouter(compose(connect(mapStateToProps, actions),
+export default withRouter(compose(
   graphql(FETCH_ALL_BOOKS_QUERY, {
     name: 'books'
   }),
@@ -49,4 +24,4 @@ export default withRouter(compose(connect(mapStateToProps, actions),
   graphql(DESTROY_BOOK_MUTATION, {
     name: 'destroyBook'
   }),
-)(BookEditForm))
+)(EditBook))
