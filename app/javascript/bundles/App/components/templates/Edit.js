@@ -43,11 +43,12 @@ class EditBook extends React.Component<Props> {
   }
 
   render() {
-    const {book, handleSubmit} = this.props
+    const {book} = this.props
     return (
       <UpdateBookContent
+        bookItem={book.item && book.item}
         card={{title: book.item && `${book.item.name}`, subtitle: '本の編集をします'}}
-        onSubmit={{label: '変更する', method: handleSubmit(this.onSubmit.bind(this))}}
+        onSubmit={{label: '変更する', method: this.onSubmit.bind(this)}}
         onDelete={{label: "削除する", method: this.onClickDelete.bind(this)}}
       />
     )

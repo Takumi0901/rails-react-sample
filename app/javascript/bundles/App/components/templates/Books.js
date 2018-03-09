@@ -5,7 +5,6 @@ import FoundationHOC from '../../containers/hoc/FoundationHOC'
 import UpdateBookContent from '../organisms/UpdateBookContent'
 
 type Props = {
-  reset: Function,
   createBook: Function,
   handleSubmit: Function
 }
@@ -15,25 +14,27 @@ class Books extends React.Component<Props> {
     super()
   }
 
-  onSubmit(values) {
-    const {reset, createBook} = this.props
+  onSubmit(values, e) {
+    const {createBook} = this.props
     createBook({
       variables: {name: values.name, about: values.about},
       refetchQueries: [{
         query: FETCH_ALL_BOOKS_QUERY
       }]
     })
-    reset()
+    e.reset()
   }
 
   render() {
-    const {handleSubmit} = this.props
     return (
-      <UpdateBookContent
-        card={{title: '本の登録', subtitle: '本の登録をします'}}
-        onSubmit={{label: '登録する', method: handleSubmit(this.onSubmit.bind(this))}}
-        onDelete={{}}
-      />
+      <div>
+        <UpdateBookContent
+          bookItem={false}
+          card={{title: '本の登録', subtitle: '本の登録をします'}}
+          onSubmit={{label: '登録する', method: this.onSubmit.bind(this)}}
+          onDelete={{}}
+        />
+      </div>
     )
   }
 }
