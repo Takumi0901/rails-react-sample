@@ -3,7 +3,11 @@
   "private": true,
   "scripts": {
     "start": "foreman start -f Procfile.dev-server",
-    "flow": "flow"
+    "flow": "flow",
+    "test": "jest"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>app/javascript/enzymeSetUp.js"
   },
   "dependencies": {
     "@rails/webpacker": "^3.2.2",
@@ -30,14 +34,21 @@
     "redux-logger": "^3.0.6"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.1",
+    "babel-loader": "^7.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.18.1",
     "eslint-plugin-flowtype": "^2.46.1",
     "eslint-plugin-react": "^7.7.0",
     "flow-bin": "^0.66.0",
+    "jest": "^22.4.2",
     "webpack-dev-server": "^2.11.1"
   }
 }
