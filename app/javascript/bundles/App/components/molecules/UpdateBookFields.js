@@ -16,7 +16,23 @@ const UpdateBookFields = () => (
     />
     <Field
       component={FormField}
-      name="about"
+      name="author"
+      hintText="例) 鳥山明"
+      floatingLabelText="本の作者を入力"
+      floatingLabelFixed={true}
+      fullWidth={true}
+    />
+    <Field
+      component={FormField}
+      name="url"
+      hintText="例) http://exampl.com"
+      floatingLabelText="AmazonのURLを入力"
+      floatingLabelFixed={true}
+      fullWidth={true}
+    />
+    <Field
+      component={FormField}
+      name="description"
       hintText="例) cha-ra he-cha-ra"
       floatingLabelText="本の説明文を入力"
       multiLine={true}

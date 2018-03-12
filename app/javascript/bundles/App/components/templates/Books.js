@@ -17,7 +17,12 @@ class Books extends React.Component<Props> {
   onSubmit(values, e) {
     const {createBook} = this.props
     createBook({
-      variables: {name: values.name, about: values.about},
+      variables: {
+        name: values.name,
+        description: values.description,
+        author: values.author,
+        url: values.url
+      },
       refetchQueries: [{
         query: FETCH_ALL_BOOKS_QUERY
       }]
