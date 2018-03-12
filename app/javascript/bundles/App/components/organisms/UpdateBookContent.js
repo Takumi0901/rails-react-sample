@@ -17,7 +17,9 @@ type Props = {
 const UpdateBookContent = ({card, onSubmit, onDelete, bookItem}: Props) => {
   const initialValues = {
     name: bookItem && bookItem.name,
-    about: bookItem && bookItem.about
+    description: bookItem && bookItem.description,
+    author: bookItem && bookItem.author,
+    url: bookItem && bookItem.url
   }
   return (
     <Card>

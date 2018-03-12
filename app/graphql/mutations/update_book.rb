@@ -3,7 +3,9 @@ Mutations::UpdateBook = GraphQL::Relay::Mutation.define do
 
   input_field :id, !types.ID
   input_field :name, !types.String
-  input_field :about, !types.String
+  input_field :description, !types.String
+  input_field :author, !types.String
+  input_field :url, !types.String
 
   return_field :book, !Types::BookType
 
@@ -14,7 +16,9 @@ Mutations::UpdateBook = GraphQL::Relay::Mutation.define do
       book = Book.find_by_id(args[:id])
 
       book.name = args[:name]
-      book.about = args[:about]
+      book.description = args[:description]
+      book.author = args[:author]
+      book.url = args[:url]
       book.save
 
       { book: book }
