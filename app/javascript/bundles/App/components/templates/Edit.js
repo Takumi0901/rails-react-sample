@@ -13,9 +13,20 @@ type Props = {
   book: Object
 }
 
-class EditBook extends React.Component<Props> {
+type State = {
+  errors: Object,
+  succeeded: boolean,
+  deleted: boolean
+}
+
+class EditBook extends React.Component<Props, State> {
   constructor() {
     super()
+    this.state = {
+      succeeded: false,
+      deleted: false,
+      errors: {}
+    }
   }
 
   onSubmit(values) {
@@ -35,23 +46,61 @@ class EditBook extends React.Component<Props> {
         }
       }]
     })
+    .then(() => {
+      this.setState({
+        succeeded: true,
+        deleted: false,
+        errors: {}
+      })
+    })
+    .catch((errors) => {
+      console.log(errors)
+      this.setState({
+        succeeded: false,
+        deleted: false,
+        errors: errors
+      })
+    })
   }
 
   onClickDelete() {
-    const {match, history, destroyBook} = this.props
+    const {match, destroyBook} = this.props
     destroyBook({
       variables: {id: match.params.bookId},
       refetchQueries: [{
         query: FETCH_ALL_BOOKS_QUERY
       }]
     })
-    history.push('/')
+    .then(() => {
+      this.setState({
+        deleted: true,
+        succeeded: false,
+        errors: {}
+      })
+    })
+    .catch((errors) => {
+      console.log(errors)
+      this.setState({
+        deleted: false,
+        succeeded: false,
+        errors: errors
+      })
+    })
   }
+
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.deleted !== this.state.deleted && this.state.deleted) {
+      setTimeout(() => this.props.history.push('/'), 1000)
+    }
+  }
+
 
   render() {
     const {book} = this.props
     return (
       <UpdateBookContent
+        {...this.state}
         bookItem={book.item && book.item}
         card={{title: book.item && `${book.item.name}`, subtitle: '本の編集をします'}}
         onSubmit={{label: '変更する', method: this.onSubmit.bind(this)}}

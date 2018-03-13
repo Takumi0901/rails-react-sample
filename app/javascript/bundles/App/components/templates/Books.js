@@ -9,9 +9,20 @@ type Props = {
   handleSubmit: Function
 }
 
-class Books extends React.Component<Props> {
+type State = {
+  errors: Object,
+  succeeded: boolean,
+  deleted: boolean
+}
+
+class Books extends React.Component<Props, State> {
   constructor() {
     super()
+    this.state = {
+      succeeded: false,
+      deleted: false,
+      errors: {}
+    }
   }
 
   onSubmit(values, e) {
@@ -27,13 +38,27 @@ class Books extends React.Component<Props> {
         query: FETCH_ALL_BOOKS_QUERY
       }]
     })
-    e.reset()
+    .then(() => {
+      e.reset()
+      this.setState({
+        succeeded: true,
+        errors: {}
+      })
+    })
+    .catch((errors) => {
+      console.log(errors)
+      this.setState({
+        succeeded: false,
+        errors: errors
+      })
+    })
   }
 
   render() {
     return (
       <div>
         <UpdateBookContent
+          {...this.state}
           bookItem={false}
           card={{title: '本の登録', subtitle: '本の登録をします'}}
           onSubmit={{label: '登録する', method: this.onSubmit.bind(this)}}
