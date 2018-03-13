@@ -12,25 +12,37 @@ type Props = {
   card: Object,
   onSubmit: Object,
   onDelete: Object,
-  bookItem: any,
+  book: any,
+  books: any,
   errors: Object,
   succeeded: boolean,
   deleted: boolean
 }
 
-const UpdateBookContent = ({card, onSubmit, onDelete, bookItem, errors, succeeded, deleted}: Props) => {
+const UpdateBookContent = ({card, onSubmit, onDelete, book, books, errors, succeeded, deleted}: Props) => {
   const initialValues = {
-    name: bookItem && bookItem.name,
-    description: bookItem && bookItem.description,
-    author: bookItem && bookItem.author,
-    url: bookItem && bookItem.url
+    name: book.item && book.item.name,
+    description: book.item && book.item.description,
+    author: book.item && book.item.author,
+    url: book.item && book.item.url
+  }
+
+
+  let err = []
+
+  if(Object.keys(errors).length > 0) {
+    err.push(errors.message)
+  } else if(book.error) {
+    err.push(book.error.message)
+  } else if(books.error) {
+    err.push(books.error.message)
   }
 
   return (
     <Card>
       <CardTitle title={card.title} subtitle={card.subtitle}/>
       <Form
-        initialValues={bookItem && initialValues}
+        initialValues={book.item && initialValues}
         onSubmit={onSubmit.method}
         render={({ handleSubmit, pristine, invalid }) => (
           <form>
@@ -39,7 +51,7 @@ const UpdateBookContent = ({card, onSubmit, onDelete, bookItem, errors, succeede
           </form>
         )}
       />
-      <SnackbarWithMessage errors={errors} succeeded={succeeded} deleted={deleted}/>
+      <SnackbarWithMessage errors={err} succeeded={succeeded} deleted={deleted}/>
     </Card>
   )
 }

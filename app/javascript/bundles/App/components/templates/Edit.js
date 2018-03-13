@@ -10,7 +10,8 @@ type Props = {
   history: Object,
   destroyBook: Function,
   handleSubmit: Function,
-  book: Object
+  book: Object,
+  books: any
 }
 
 type State = {
@@ -54,7 +55,7 @@ class EditBook extends React.Component<Props, State> {
       })
     })
     .catch((errors) => {
-      console.log(errors)
+      console.log(errors.message)
       this.setState({
         succeeded: false,
         deleted: false,
@@ -90,19 +91,30 @@ class EditBook extends React.Component<Props, State> {
 
 
   componentDidUpdate(prevProps, prevState) {
+    if(prevState.succeeded !== this.state.succeeded && this.state.succeeded) {
+      setTimeout(() => this.setState({
+        deleted: false,
+        succeeded: false,
+        errors: {}
+      }), 1000)
+    }
     if(prevState.deleted !== this.state.deleted && this.state.deleted) {
+      setTimeout(() => this.props.history.push('/'), 1000)
+    }
+    if(prevProps.book.error !== this.props.book.error && this.props.book.error) {
       setTimeout(() => this.props.history.push('/'), 1000)
     }
   }
 
 
   render() {
-    const {book} = this.props
+    const {book, books} = this.props
     return (
       <UpdateBookContent
         {...this.state}
-        bookItem={book.item && book.item}
-        card={{title: book.item && `${book.item.name}`, subtitle: '本の編集をします'}}
+        book={book}
+        books={books}
+        card={{title: book.item ? `${book.item.name}` : "no-title", subtitle: '本の編集をします'}}
         onSubmit={{label: '変更する', method: this.onSubmit.bind(this)}}
         onDelete={{label: "削除する", method: this.onClickDelete.bind(this)}}
       />

@@ -6,7 +6,8 @@ import UpdateBookContent from '../organisms/UpdateBookContent'
 
 type Props = {
   createBook: Function,
-  handleSubmit: Function
+  handleSubmit: Function,
+  books: any
 }
 
 type State = {
@@ -55,11 +56,13 @@ class Books extends React.Component<Props, State> {
   }
 
   render() {
+    const {books} = this.props
     return (
       <div>
         <UpdateBookContent
           {...this.state}
-          bookItem={false}
+          book={false}
+          books={books}
           card={{title: '本の登録', subtitle: '本の登録をします'}}
           onSubmit={{label: '登録する', method: this.onSubmit.bind(this)}}
           onDelete={{}}
