@@ -1,7 +1,8 @@
 // @flow
 import React from "react"
-import { Field } from 'react-final-form'
+import {Field} from 'react-final-form'
 import FormField from "../atoms/FormField"
+import {required, url, composeValidators} from "../../helper/Validate"
 import CardText from 'material-ui/Card/CardText'
 
 const UpdateBookFields = () => (
@@ -13,6 +14,7 @@ const UpdateBookFields = () => (
       floatingLabelText="本のタイトルを入力"
       floatingLabelFixed={true}
       fullWidth={true}
+      validate={composeValidators(required)}
     />
     <Field
       component={FormField}
@@ -21,6 +23,7 @@ const UpdateBookFields = () => (
       floatingLabelText="本の作者を入力"
       floatingLabelFixed={true}
       fullWidth={true}
+      validate={composeValidators(required)}
     />
     <Field
       component={FormField}
@@ -29,6 +32,7 @@ const UpdateBookFields = () => (
       floatingLabelText="AmazonのURLを入力"
       floatingLabelFixed={true}
       fullWidth={true}
+      validate={composeValidators(url)}
     />
     <Field
       component={FormField}

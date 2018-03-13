@@ -10,20 +10,26 @@ type Props = {
   fullWidth: number,
   multiLine: boolean,
   row: number,
-  rowsMax: number
+  rowsMax: number,
+  meta: Object
 }
 
-const FormField = (props: Props) => (
-  <TextField
-    {...props.input}
-    hintText={props.hintText}
-    floatingLabelText={props.floatingLabelText}
-    floatingLabelFixed={props.floatingLabelFixed}
-    fullWidth={props.fullWidth}
-    multiLine={props.multiLine}
-    rows={props.row}
-    rowsMax={props.rowsMax}
-  />
-)
+const FormField = (props: Props) => {
+  return (
+    <div>
+      <TextField
+        {...props.input}
+        hintText={props.hintText}
+        floatingLabelText={props.floatingLabelText}
+        floatingLabelFixed={props.floatingLabelFixed}
+        fullWidth={props.fullWidth}
+        multiLine={props.multiLine}
+        rows={props.row}
+        rowsMax={props.rowsMax}
+        errorText={props.meta && props.meta.touched && props.meta.error}
+      />
+    </div>
+  )
+}
 
 export default FormField

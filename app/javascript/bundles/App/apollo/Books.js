@@ -22,7 +22,7 @@ export const FETCH_BOOK_QUERY = gql`
 `
 
 export const CREATE_BOOK_MUTATION = gql`
-  mutation CreateBook($name: String!, $description: String, $author: String, $url: String) {
+  mutation CreateBook($name: String!, $description: String, $author: String!, $url: String) {
     CreateBook(input: {name: $name, description: $description, author: $author, url: $url}) {
       book {
         name
@@ -35,7 +35,7 @@ export const CREATE_BOOK_MUTATION = gql`
 `
 
 export const UPDATE_BOOK_MUTATION = gql`
-  mutation UpdateBook($id: ID!, $name: String!, $description: String, $author: String, $url: String) {
+  mutation UpdateBook($id: ID!, $name: String!, $description: String, $author: String!, $url: String) {
     UpdateBook(input: {id: $id, name: $name, description: $description, author: $author, url: $url}) {
       book {
         name

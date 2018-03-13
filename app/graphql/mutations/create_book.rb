@@ -3,7 +3,7 @@ Mutations::CreateBook = GraphQL::Relay::Mutation.define do
 
   input_field :name, !types.String
   input_field :description, types.String
-  input_field :author, types.String
+  input_field :author, !types.String
   input_field :url, types.String
 
   return_field :book, Types::BookType
