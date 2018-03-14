@@ -58,16 +58,14 @@ class Books extends React.Component<Props, State> {
   render() {
     const {books} = this.props
     return (
-      <div>
-        <UpdateBookContent
-          {...this.state}
-          book={false}
-          books={books}
-          card={{title: '本の登録', subtitle: '本の登録をします'}}
-          onSubmit={{label: '登録する', method: this.onSubmit.bind(this)}}
-          onDelete={{}}
-        />
-      </div>
+      <UpdateBookContent
+        {...this.state}
+        book={false}
+        books={books}
+        card={{title: '本の登録', subtitle: '本の登録をします'}}
+        onSubmit={{label: '登録する', method: this.onSubmit.bind(this)}}
+        onDelete={{}}
+      />
     )
   }
 }
