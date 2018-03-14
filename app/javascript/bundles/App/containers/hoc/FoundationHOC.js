@@ -9,7 +9,8 @@ type Props = {
 }
 
 type State = {
-  open: boolean
+  open: boolean,
+  docked: boolean
 }
 
 const FoundationHOC = (WrappedComponent: Object) => {
@@ -17,7 +18,8 @@ const FoundationHOC = (WrappedComponent: Object) => {
     constructor() {
       super()
       this.state = {
-        open: false
+        open: false,
+        docked: false
       }
     }
     handleToggle() {
@@ -25,6 +27,31 @@ const FoundationHOC = (WrappedComponent: Object) => {
         open: !this.state.open
       })
     }
+
+    handleResize() {
+      if (window.matchMedia('(max-width:768px)').matches) {
+        this.setState({
+          open: false,
+          docked: false
+        })
+      } else {
+        this.setState({
+          open: true,
+          docked: true
+        })
+      }
+    }
+
+    componentDidMount() {
+      window.addEventListener('load', this.handleResize.bind(this))
+      window.addEventListener('resize', this.handleResize.bind(this))
+    }
+
+    componentWillUnmount() {
+      window.removeEventListener('load', this.handleResize.bind(this))
+      window.removeEventListener('resize', this.handleResize.bind(this))
+    }
+
     render() {
       const {books} = this.props
       return (
@@ -32,13 +59,15 @@ const FoundationHOC = (WrappedComponent: Object) => {
           <NavBar
             onToggle={() => this.handleToggle()}
             open={this.state.open}
+            docked={this.state.docked}
           />
           <SideBar
             onToggle={() => this.handleToggle()}
             open={this.state.open}
+            docked={this.state.docked}
             list={books.list}
           />
-          <Container>
+          <Container docked={this.state.docked}>
             <WrappedComponent {...this.props}/>
           </Container>
         </div>

@@ -5,11 +5,18 @@ import Drawer from 'material-ui/Drawer/Drawer'
 import Divider from 'material-ui/Divider/Divider'
 import ListItem from '../atoms/ListItem'
 
-const SideBar = ({onToggle, list}: {onToggle: Function, list: any}) => (
+type Props = {
+  onToggle: Function,
+  list: any,
+  open: boolean,
+  docked: boolean
+}
+
+const SideBar = ({onToggle, list, open, docked}: Props) => (
   <Drawer
-    docked={true}
+    docked={docked}
     width={260}
-    open={true}
+    open={open}
     onRequestChange={() => onToggle()}
   >
     <AppBar
