@@ -23,11 +23,11 @@ const SideBar = ({onToggle, list, open, docked}: Props) => (
       title="ReactOnRails"
       showMenuIconButton={false}
     />
-    <ListItem onToggle={() => onToggle()} path={"/"} name="本を登録する"/>
+    <ListItem onToggle={onToggle} docked={docked} path={"/"} name="本を登録する"/>
     <Divider/>
     {list && list.length > 0 && list.map((e, key) => {
       return (
-        <ListItem onToggle={() => onToggle()} key={key} path={`/book/${e.id}`} name={e.name}/>
+        <ListItem onToggle={onToggle} docked={docked} key={key} path={`/book/${e.id}`} name={e.name}/>
       )
     })}
   </Drawer>

@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom'
 import EditBook from "../../components/templates/Edit"
 import {
   FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY, UPDATE_BOOK_MUTATION, DESTROY_BOOK_MUTATION
-} from '../../apollo/Books'
+} from '../../actions/Books'
 
 
 export default withRouter(compose(

@@ -1,8 +1,10 @@
 // @flow
 import React from 'react'
-import {FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY} from '../../apollo/Books'
+import {FETCH_INITIAL_STATE, FETCH_SUCCEEDED_STATE, FETCH_DELETED_STATE, FETCH_IS_ERROR_STATE} from '../../actions/Fetch'
+import {FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY} from '../../actions/Books'
 import FoundationHOC from '../../containers/hoc/FoundationHOC'
 import UpdateBookContent from '../organisms/UpdateBookContent'
+
 
 type Props = {
   match: Object,
@@ -23,11 +25,7 @@ type State = {
 class EditBook extends React.Component<Props, State> {
   constructor() {
     super()
-    this.state = {
-      succeeded: false,
-      deleted: false,
-      errors: {}
-    }
+    this.state = FETCH_INITIAL_STATE
   }
 
   onSubmit(values) {
@@ -46,21 +44,11 @@ class EditBook extends React.Component<Props, State> {
           id: match.params.bookId
         }
       }]
-    })
-    .then(() => {
-      this.setState({
-        succeeded: true,
-        deleted: false,
-        errors: {}
-      })
-    })
-    .catch((errors) => {
+    }).then(() => {
+      this.setState(FETCH_SUCCEEDED_STATE)
+    }).catch((errors) => {
       console.log(errors.message)
-      this.setState({
-        succeeded: false,
-        deleted: false,
-        errors: errors
-      })
+      this.setState(FETCH_IS_ERROR_STATE(errors))
     })
   }
 
@@ -71,37 +59,31 @@ class EditBook extends React.Component<Props, State> {
       refetchQueries: [{
         query: FETCH_ALL_BOOKS_QUERY
       }]
-    })
-    .then(() => {
-      this.setState({
-        deleted: true,
-        succeeded: false,
-        errors: {}
-      })
-    })
-    .catch((errors) => {
+    }).then(() => {
+      this.setState(FETCH_DELETED_STATE)
+    }).catch((errors) => {
       console.log(errors)
-      this.setState({
-        deleted: false,
-        succeeded: false,
-        errors: errors
-      })
+      this.setState(FETCH_IS_ERROR_STATE(errors))
     })
   }
 
+  isSucceededDecision(prevSucceeded) {
+    return prevSucceeded !== this.state.succeeded && this.state.succeeded
+  }
+
+  isDeletedDecision(prevDeleted) {
+    return prevDeleted !== this.state.deleted && this.state.deleted
+  }
+
+  isErrorDecision(prevError) {
+    return prevError !== this.props.book.error && this.props.book.error
+  }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.succeeded !== this.state.succeeded && this.state.succeeded) {
-      setTimeout(() => this.setState({
-        deleted: false,
-        succeeded: false,
-        errors: {}
-      }), 1000)
+    if(this.isSucceededDecision(prevState.succeeded)) {
+      setTimeout(() => this.setState(FETCH_INITIAL_STATE), 1000)
     }
-    if(prevState.deleted !== this.state.deleted && this.state.deleted) {
-      setTimeout(() => this.props.history.push('/'), 1000)
-    }
-    if(prevProps.book.error !== this.props.book.error && this.props.book.error) {
+    if(this.isDeletedDecision(prevState.deleted) || this.isErrorDecision(prevProps.book.error)) {
       setTimeout(() => this.props.history.push('/'), 1000)
     }
   }

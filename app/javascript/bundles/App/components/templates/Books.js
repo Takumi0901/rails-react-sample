@@ -1,6 +1,7 @@
 // @flow
 import React from 'react'
-import {FETCH_ALL_BOOKS_QUERY} from '../../apollo/Books'
+import {FETCH_INITIAL_STATE, FETCH_SUCCEEDED_STATE, FETCH_IS_ERROR_STATE} from '../../actions/Fetch'
+import {FETCH_ALL_BOOKS_QUERY} from '../../actions/Books'
 import FoundationHOC from '../../containers/hoc/FoundationHOC'
 import UpdateBookContent from '../organisms/UpdateBookContent'
 
@@ -19,11 +20,7 @@ type State = {
 class Books extends React.Component<Props, State> {
   constructor() {
     super()
-    this.state = {
-      succeeded: false,
-      deleted: false,
-      errors: {}
-    }
+    this.state = FETCH_INITIAL_STATE
   }
 
   onSubmit(values, e) {
@@ -38,20 +35,12 @@ class Books extends React.Component<Props, State> {
       refetchQueries: [{
         query: FETCH_ALL_BOOKS_QUERY
       }]
-    })
-    .then(() => {
+    }).then(() => {
       e.reset()
-      this.setState({
-        succeeded: true,
-        errors: {}
-      })
-    })
-    .catch((errors) => {
+      this.setState(FETCH_SUCCEEDED_STATE)
+    }).catch((errors) => {
       console.log(errors)
-      this.setState({
-        succeeded: false,
-        errors: errors
-      })
+      this.setState(FETCH_IS_ERROR_STATE(errors))
     })
   }
 
