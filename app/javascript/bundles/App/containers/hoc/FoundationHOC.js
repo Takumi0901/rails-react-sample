@@ -3,6 +3,7 @@ import React from 'react'
 import NavBar from '../../components/atoms/NavBar'
 import Container from '../../components/atoms/Container'
 import SideBar from '../../components/organisms/SideBar'
+import {DRAWER_VIEWPORT_PC, DRAWER_VIEWPORT_SP} from '../../actions/Drawer'
 
 type Props = {
   books: any
@@ -17,11 +18,12 @@ const FoundationHOC = (WrappedComponent: Object) => {
   class Foundation extends React.Component<Props, State> {
     constructor() {
       super()
-      this.state = {
-        open: false,
-        docked: false
-      }
+      this.state = DRAWER_VIEWPORT_PC
+      window.addEventListener('load', this.handleResize.bind(this))
+      window.addEventListener('resize', this.handleResize.bind(this))
     }
+
+
     handleToggle() {
       this.setState({
         open: !this.state.open
@@ -30,21 +32,18 @@ const FoundationHOC = (WrappedComponent: Object) => {
 
     handleResize() {
       if (window.matchMedia('(max-width:768px)').matches) {
-        this.setState({
-          open: false,
-          docked: false
-        })
+        this.setState(DRAWER_VIEWPORT_SP)
       } else {
-        this.setState({
-          open: true,
-          docked: true
-        })
+        this.setState(DRAWER_VIEWPORT_PC)
       }
     }
 
     componentDidMount() {
-      window.addEventListener('load', this.handleResize.bind(this))
-      window.addEventListener('resize', this.handleResize.bind(this))
+      if (window.matchMedia('(max-width:768px)').matches) {
+        this.setState(DRAWER_VIEWPORT_SP)
+      } else {
+        this.setState(DRAWER_VIEWPORT_PC)
+      }
     }
 
     componentWillUnmount() {
