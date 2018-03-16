@@ -24,4 +24,11 @@ Types::QueryType = GraphQL::ObjectType.define do
       Book.active.order("id DESC")
     }
   end
+
+  field :categories, types[Types::CategoryType] do
+    description "An example field added by the generator"
+    resolve ->(obj, args, ctx) {
+      Category.active.order("id DESC")
+    }
+  end
 end
