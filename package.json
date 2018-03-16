@@ -17,6 +17,7 @@
     "apollo-link-http": "^1.3.3",
     "babel-preset-react": "^6.24.1",
     "final-form": "^4.2.1",
+    "final-form-set-field-data": "^1.0.1",
     "flow-typed": "^2.3.0",
     "graphql": "^0.13.1",
     "graphql-tag": "^2.8.0",

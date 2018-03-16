@@ -1,8 +1,8 @@
 // @flow
 import React from "react"
 import {Field} from 'react-final-form'
-import FormField from "../atoms/FormField"
-import {required, url, composeValidators} from "../../helper/Validate"
+import FormField from "../../atoms/FormField"
+import {composeValidators, required} from "../../../helper/Validate"
 import CardText from 'material-ui/Card/CardText'
 
 const CreateCategoryFields = () => (

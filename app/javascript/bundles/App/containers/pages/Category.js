@@ -1,4 +1,3 @@
-import {reduxForm} from 'redux-form'
 import Category from '../../components/templates/Category'
 import { graphql, compose } from 'react-apollo'
 import {FETCH_ALL_BOOKS_QUERY} from '../../actions/Books'
