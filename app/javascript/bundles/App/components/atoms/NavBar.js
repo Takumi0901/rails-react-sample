@@ -1,8 +1,8 @@
+// @flow
 import React from 'react'
-import {Link} from 'react-router-dom'
-import { AppBar, MenuItem, Drawer, Divider } from 'material-ui'
+import AppBar from 'material-ui/AppBar/AppBar'
 
-const NavBar = ({onToggle}) => (
+const NavBar = ({onToggle}: {onToggle: Function}) => (
   <AppBar
     title="React Study"
     style={{position: "fixed", top: 0}}

@@ -3,5 +3,7 @@ Types::BookType = GraphQL::ObjectType.define do
 
   field :id, !types.ID
   field :name, !types.String
-  field :about, !types.String
+  field :description, types.String
+  field :author, types.String
+  field :url, types.String
 end

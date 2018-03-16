@@ -1,7 +1,5 @@
 import React from 'react'
-import { Provider } from 'react-redux'
 import { ApolloProvider } from 'react-apollo'
-import configureStore from '../redux/Store'
 import Router from '../router/index'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import routes from './routes'
@@ -24,13 +22,11 @@ const client = new ApolloClient({
 
 const App = (props) => (
   <ApolloProvider client={client}>
-    <Provider store={configureStore(props)}>
-      <Router>
-        <MuiThemeProvider>
-          {routes}
-        </MuiThemeProvider>
-      </Router>
-    </Provider>
+    <Router>
+      <MuiThemeProvider>
+        {routes}
+      </MuiThemeProvider>
+    </Router>
   </ApolloProvider>
 )
 

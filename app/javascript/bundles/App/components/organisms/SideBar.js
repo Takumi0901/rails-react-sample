@@ -1,23 +1,34 @@
+// @flow
 import React from 'react'
-import { AppBar, Drawer, Divider } from 'material-ui'
+import AppBar from 'material-ui/AppBar/AppBar'
+import Drawer from 'material-ui/Drawer/Drawer'
+import Divider from 'material-ui/Divider/Divider'
 import ListItem from '../atoms/ListItem'
 
-const SideBar = ({onToggle, list}) => (
+type Props = {
+  onToggle: Function,
+  list: any,
+  open: boolean,
+  docked: boolean
+}
+
+const SideBar = ({onToggle, list, open, docked}: Props) => (
   <Drawer
-    docked={true}
+    docked={docked}
     width={260}
-    open={true}
+    open={open}
     onRequestChange={() => onToggle()}
   >
     <AppBar
       title="ReactOnRails"
       showMenuIconButton={false}
     />
-    <ListItem path={"/"} name="本を登録する"/>
+    <ListItem onToggle={onToggle} docked={docked} path={"/"} name="本を登録する"/>
+    <ListItem onToggle={onToggle} docked={docked} path={"/category"} name="カテゴリを登録する"/>
     <Divider/>
     {list && list.length > 0 && list.map((e, key) => {
       return (
-        <ListItem key={key} path={`/book/${e.id}`} name={e.name}/>
+        <ListItem onToggle={onToggle} docked={docked} key={key} path={`/book/${e.id}`} name={e.name}/>
       )
     })}
   </Drawer>

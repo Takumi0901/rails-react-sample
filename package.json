@@ -2,7 +2,12 @@
   "name": "rails-on-react-sample",
   "private": true,
   "scripts": {
-    "start": "foreman start -f Procfile.dev-server"
+    "start": "foreman start -f Procfile.dev-server",
+    "flow": "flow",
+    "test": "jest"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>app/javascript/enzymeSetUp.js"
   },
   "dependencies": {
     "@rails/webpacker": "^3.2.2",
@@ -11,6 +16,9 @@
     "apollo-client": "^2.2.5",
     "apollo-link-http": "^1.3.3",
     "babel-preset-react": "^6.24.1",
+    "final-form": "^4.2.1",
+    "final-form-set-field-data": "^1.0.1",
+    "flow-typed": "^2.3.0",
     "graphql": "^0.13.1",
     "graphql-tag": "^2.8.0",
     "material-ui": "^0.20.0",
@@ -19,6 +27,7 @@
     "react-apollo": "^2.0.4",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
+    "react-final-form": "^3.1.2",
     "react-on-rails": "^10.1.1",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
@@ -28,9 +37,22 @@
     "redux-logger": "^3.0.6"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.1",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.2",
     "eslint": "^4.18.1",
+    "eslint-plugin-flowtype": "^2.46.1",
     "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "^0.66.0",
+    "jest": "^22.4.2",
     "webpack-dev-server": "^2.11.1"
   }
 }
