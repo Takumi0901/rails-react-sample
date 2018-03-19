@@ -8,7 +8,8 @@ import UpdateContent from '../organisms/book/UpdateContent'
 type Props = {
   createBook: Function,
   handleSubmit: Function,
-  books: any
+  books: any,
+  categories: Object
 }
 
 type State = {
@@ -28,8 +29,9 @@ class Books extends React.Component<Props, State> {
     createBook({
       variables: {
         name: values.name,
-        description: values.description,
         author: values.author,
+        categoryId: parseInt(values.categoryId),
+        description: values.description,
         url: values.url
       },
       refetchQueries: [{
@@ -45,12 +47,13 @@ class Books extends React.Component<Props, State> {
   }
 
   render() {
-    const {books} = this.props
+    const {books, categories} = this.props
     return (
       <UpdateContent
         {...this.state}
         book={false}
         books={books}
+        categories={categories.categories}
         card={{title: '本の登録', subtitle: '本の登録をします'}}
         onSubmit={{label: '登録する', method: this.onSubmit.bind(this)}}
         onDelete={{}}

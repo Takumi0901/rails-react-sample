@@ -16,14 +16,16 @@ type Props = {
   books: any,
   errors: Object,
   succeeded: boolean,
-  deleted: boolean
+  deleted: boolean,
+  categories: Array<any>
 }
 
-const UpdateBookContent = ({card, onSubmit, onDelete, book, books, errors, succeeded, deleted}: Props) => {
+const UpdateBookContent = ({card, onSubmit, onDelete, book, books, errors, succeeded, deleted, categories}: Props) => {
   const initialValues = {
     name: book.item && book.item.name,
     description: book.item && book.item.description,
     author: book.item && book.item.author,
+    categoryId: book.item && book.item.category_id,
     url: book.item && book.item.url
   }
 
@@ -46,7 +48,7 @@ const UpdateBookContent = ({card, onSubmit, onDelete, book, books, errors, succe
         onSubmit={onSubmit.method}
         render={({ handleSubmit }) => (
           <div>
-            <UpdateFields/>
+            <UpdateFields categories={categories}/>
             <UpdateActions onSubmit={onSubmit} onDelete={onDelete} handleSubmit={handleSubmit}/>
           </div>
         )}

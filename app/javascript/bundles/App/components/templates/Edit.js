@@ -13,7 +13,8 @@ type Props = {
   destroyBook: Function,
   handleSubmit: Function,
   book: Object,
-  books: any
+  books: any,
+  categories: Object
 }
 
 type State = {
@@ -35,6 +36,7 @@ class EditBook extends React.Component<Props, State> {
         id: match.params.bookId,
         name: values.name,
         description: values.description,
+        categoryId: parseInt(values.categoryId),
         author: values.author,
         url: values.url
       },
@@ -90,12 +92,13 @@ class EditBook extends React.Component<Props, State> {
 
 
   render() {
-    const {book, books} = this.props
+    const {book, books, categories} = this.props
     return (
       <UpdateContent
         {...this.state}
         book={book}
         books={books}
+        categories={categories.categories}
         card={{title: book.item ? `${book.item.name}` : "no-title", subtitle: '本の編集をします'}}
         onSubmit={{label: '変更する', method: this.onSubmit.bind(this)}}
         onDelete={{label: "削除する", method: this.onClickDelete.bind(this)}}

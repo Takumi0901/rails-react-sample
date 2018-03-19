@@ -4,6 +4,7 @@ import EditBook from "../../components/templates/Edit"
 import {
   FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY, UPDATE_BOOK_MUTATION, DESTROY_BOOK_MUTATION
 } from '../../actions/Books'
+import {FETCH_ALL_CATEGORIES_QUERY} from "../../actions/Category"
 
 
 export default withRouter(compose(
@@ -24,4 +25,7 @@ export default withRouter(compose(
   graphql(DESTROY_BOOK_MUTATION, {
     name: 'destroyBook'
   }),
+  graphql(FETCH_ALL_CATEGORIES_QUERY, {
+    name: 'categories'
+  })
 )(EditBook))
