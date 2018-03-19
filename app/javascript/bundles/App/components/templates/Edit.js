@@ -32,14 +32,7 @@ class EditBook extends React.Component<Props, State> {
   onSubmit(values) {
     const {match, updateBook} = this.props
     updateBook({
-      variables: {
-        id: match.params.bookId,
-        name: values.name,
-        description: values.description,
-        categoryId: parseInt(values.categoryId),
-        author: values.author,
-        url: values.url
-      },
+      variables: {id: match.params.bookId, ...values},
       refetchQueries: [{
         query: FETCH_BOOK_QUERY,
         variables: {
