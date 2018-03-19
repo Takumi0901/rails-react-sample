@@ -16,19 +16,17 @@ type Props = {
 
 const FormField = (props: Props) => {
   return (
-    <div>
-      <TextField
-        {...props.input}
-        hintText={props.hintText}
-        floatingLabelText={props.floatingLabelText}
-        floatingLabelFixed={props.floatingLabelFixed}
-        fullWidth={props.fullWidth}
-        multiLine={props.multiLine}
-        rows={props.row}
-        rowsMax={props.rowsMax}
-        errorText={props.meta && props.meta.touched && props.meta.error}
-      />
-    </div>
+    <TextField
+      {...props.input}
+      hintText={props.hintText}
+      floatingLabelText={props.floatingLabelText}
+      floatingLabelFixed={props.floatingLabelFixed}
+      fullWidth={props.fullWidth}
+      multiLine={props.multiLine}
+      rows={props.row}
+      rowsMax={props.rowsMax}
+      errorText={props.meta && props.meta.touched && props.meta.error}
+    />
   )
 }
 
