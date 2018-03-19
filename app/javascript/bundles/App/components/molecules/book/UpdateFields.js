@@ -2,10 +2,11 @@
 import React from "react"
 import {Field} from 'react-final-form'
 import FormField from "../../atoms/FormField"
+import FormSelectField from "../../atoms/FormSelectField"
 import {required, url, composeValidators} from "../../../helper/Validate"
 import CardText from 'material-ui/Card/CardText'
 
-const UpdateBookFields = () => (
+const UpdateBookFields = ({categories}: {categories: Array<any>}) => (
   <CardText>
     <Field
       name="name"
@@ -23,6 +24,15 @@ const UpdateBookFields = () => (
       floatingLabelText="本の作者を入力"
       floatingLabelFixed={true}
       fullWidth={true}
+      validate={composeValidators(required)}
+    />
+    <Field
+      component={FormSelectField}
+      name="categoryId"
+      floatingLabelText="本のカテゴリを選択"
+      floatingLabelFixed={true}
+      fullWidth={true}
+      list={categories}
       validate={composeValidators(required)}
     />
     <Field

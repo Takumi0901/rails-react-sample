@@ -2,8 +2,9 @@ Mutations::CreateBook = GraphQL::Relay::Mutation.define do
   name "CreateBook"
 
   input_field :name, !types.String
-  input_field :description, types.String
   input_field :author, !types.String
+  input_field :category_id, !types.Int
+  input_field :description, types.String
   input_field :url, types.String
 
   return_field :book, Types::BookType
@@ -12,8 +13,9 @@ Mutations::CreateBook = GraphQL::Relay::Mutation.define do
     begin
       {book: Book.create(
           name:args[:name],
-          description:args[:description],
           author:args[:author],
+          category_id:args[:category_id],
+          description:args[:description],
           url:args[:url]
       )}
     rescue => e
