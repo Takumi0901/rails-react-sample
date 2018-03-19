@@ -1,11 +1,11 @@
 // @flow
 import React from "react"
+import { Form } from 'react-final-form'
 import Card from 'material-ui/Card/Card'
 import CardTitle from 'material-ui/Card/CardTitle'
-import UpdateBookFields from '../molecules/UpdateBookFields'
-import { Form, Field } from 'react-final-form'
-import UpdateBookActions from '../molecules/UpdateBookActions'
-import SnackbarWithMessage from '../atoms/SnackbarWithMessage'
+import UpdateFields from '../../molecules/book/UpdateFields'
+import UpdateActions from '../../molecules/UpdateActions'
+import SnackbarWithMessage from '../../atoms/SnackbarWithMessage'
 
 
 type Props = {
@@ -44,11 +44,11 @@ const UpdateBookContent = ({card, onSubmit, onDelete, book, books, errors, succe
       <Form
         initialValues={book.item && initialValues}
         onSubmit={onSubmit.method}
-        render={({ handleSubmit, pristine, invalid }) => (
-          <form>
-            <UpdateBookFields/>
-            <UpdateBookActions onSubmit={onSubmit} onDelete={onDelete} handleSubmit={handleSubmit}/>
-          </form>
+        render={({ handleSubmit }) => (
+          <div>
+            <UpdateFields/>
+            <UpdateActions onSubmit={onSubmit} onDelete={onDelete} handleSubmit={handleSubmit}/>
+          </div>
         )}
       />
       <SnackbarWithMessage errors={err} succeeded={succeeded} deleted={deleted}/>

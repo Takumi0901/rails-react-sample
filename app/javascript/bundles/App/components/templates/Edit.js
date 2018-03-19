@@ -3,7 +3,7 @@ import React from 'react'
 import {FETCH_INITIAL_STATE, FETCH_SUCCEEDED_STATE, FETCH_DELETED_STATE, FETCH_IS_ERROR_STATE} from '../../actions/Fetch'
 import {FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY} from '../../actions/Books'
 import FoundationHOC from '../../containers/hoc/FoundationHOC'
-import UpdateBookContent from '../organisms/UpdateBookContent'
+import UpdateContent from '../organisms/book/UpdateContent'
 
 
 type Props = {
@@ -92,7 +92,7 @@ class EditBook extends React.Component<Props, State> {
   render() {
     const {book, books} = this.props
     return (
-      <UpdateBookContent
+      <UpdateContent
         {...this.state}
         book={book}
         books={books}

@@ -24,6 +24,7 @@ const SideBar = ({onToggle, list, open, docked}: Props) => (
       showMenuIconButton={false}
     />
     <ListItem onToggle={onToggle} docked={docked} path={"/"} name="本を登録する"/>
+    <ListItem onToggle={onToggle} docked={docked} path={"/category"} name="カテゴリを登録する"/>
     <Divider/>
     {list && list.length > 0 && list.map((e, key) => {
       return (

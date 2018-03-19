@@ -3,7 +3,7 @@ import React from "react"
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton'
 import CardActions from 'material-ui/Card/CardActions'
 
-const UpdateBookActions = ({onSubmit, onDelete, handleSubmit}: {onSubmit: Object, onDelete: Object, handleSubmit: any}) => (
+const UpdateActions = ({onSubmit, onDelete, handleSubmit}: {onSubmit: Object, onDelete: Object, handleSubmit: any}) => (
   <CardActions>
     {Object.keys(onSubmit).length > 0 &&
     <RaisedButton
@@ -22,4 +22,4 @@ const UpdateBookActions = ({onSubmit, onDelete, handleSubmit}: {onSubmit: Object
   </CardActions>
 )
 
-export default UpdateBookActions
+export default UpdateActions

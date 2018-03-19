@@ -3,7 +3,7 @@ Mutations::CreateCategory = GraphQL::Relay::Mutation.define do
 
   input_field :name, !types.String
 
-  return_field :category, Types::BookType
+  return_field :category, Types::CategoryType
 
   resolve ->(obj, args, ctx) {
     begin
