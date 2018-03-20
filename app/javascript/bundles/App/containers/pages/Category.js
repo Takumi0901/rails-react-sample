@@ -5,10 +5,10 @@ import {CREATE_CATEGORY_MUTATION, FETCH_ALL_CATEGORIES_QUERY, DESTROY_CATEGORY_M
 
 export default compose(
   graphql(FETCH_ALL_BOOKS_QUERY, {
-    name: 'books'
+    name: 'booksData'
   }),
   graphql(FETCH_ALL_CATEGORIES_QUERY, {
-    name: 'categories'
+    name: 'categoryData'
   }),
   graphql(CREATE_CATEGORY_MUTATION, {
     name: 'createCategory'
