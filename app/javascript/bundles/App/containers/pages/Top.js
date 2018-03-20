@@ -5,12 +5,12 @@ import {FETCH_ALL_CATEGORIES_QUERY} from "../../actions/Category"
 
 export default compose(
   graphql(FETCH_ALL_BOOKS_QUERY, {
-    name: 'books'
+    name: 'booksData'
   }),
   graphql(CREATE_BOOK_MUTATION, {
     name: 'createBook'
   }),
   graphql(FETCH_ALL_CATEGORIES_QUERY, {
-    name: 'categories'
+    name: 'categoryData'
   })
 )(Books)

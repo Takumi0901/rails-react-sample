@@ -6,7 +6,7 @@ import SideBar from '../../components/organisms/SideBar'
 import {DRAWER_VIEWPORT_PC, DRAWER_VIEWPORT_SP} from '../../actions/Drawer'
 
 type Props = {
-  books: any
+  booksData: any
 }
 
 type State = {
@@ -52,7 +52,7 @@ const FoundationHOC = (WrappedComponent: Object) => {
     }
 
     render() {
-      const {books} = this.props
+      const {booksData} = this.props
       return (
         <div>
           <NavBar
@@ -64,7 +64,7 @@ const FoundationHOC = (WrappedComponent: Object) => {
             onToggle={() => this.handleToggle()}
             open={this.state.open}
             docked={this.state.docked}
-            list={books.list}
+            list={booksData.books}
           />
           <Container docked={this.state.docked}>
             <WrappedComponent {...this.props}/>
