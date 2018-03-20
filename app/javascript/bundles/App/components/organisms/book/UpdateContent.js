@@ -43,7 +43,11 @@ const UpdateBookContent = ({card, onSubmit, onDelete, bookData, booksData, error
         )}
       />
       <SnackbarWithMessage
-        isError={false}
+        isError={
+          Object.keys(errors).length > 0 ||
+          (bookData && bookData.error && bookData.error.message.length > 0) ||
+          (bookData && booksData.error && booksData.error.message.length > 0)
+        }
         succeeded={succeeded}
         deleted={deleted}/>
     </Card>
