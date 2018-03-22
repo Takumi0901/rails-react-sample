@@ -14,7 +14,7 @@ type Props = {
   createCategory: Function,
   destroyCategory: Function,
   updateCategory: Function,
-  categories: Object
+  categoryData: Object
 }
 
 type State = {
@@ -32,9 +32,7 @@ class Category extends React.Component<Props, State> {
   onSubmit(values, e) {
     const {createCategory} = this.props
     createCategory({
-      variables: {
-        name: values.name
-      },
+      variables: {...values},
       refetchQueries: [{
         query: FETCH_ALL_CATEGORIES_QUERY
       }]
@@ -66,10 +64,7 @@ class Category extends React.Component<Props, State> {
   onSubmitDetail(values) {
     const {updateCategory} = this.props
     updateCategory({
-      variables: {
-        id: parseInt(values.id),
-        name: values.name
-      },
+      variables: {id: parseInt(values.id), ...values},
       refetchQueries: [{
         query: FETCH_ALL_CATEGORIES_QUERY
       }]
@@ -90,21 +85,20 @@ class Category extends React.Component<Props, State> {
   }
 
   isErrorDecision(prevError) {
-    return prevError !== this.props.categories.error && this.props.categories.error
+    return prevError !== this.props.categoryData.error && this.props.categoryData.error
   }
 
   componentDidUpdate(prevProps, prevState) {
     if(this.isSucceededDecision(prevState.succeeded) ||
       this.isDeletedDecision(prevState.deleted) ||
-      this.isErrorDecision(prevProps.categories.error)) {
+      this.isErrorDecision(prevProps.categoryData.error)) {
       setTimeout(() => this.setState(FETCH_INITIAL_STATE), 1800)
     }
   }
 
 
   render() {
-    const {categories} = this.props
-    const err = Object.keys(this.state.errors).length > 0 ? [...this.state.errors.message] : []
+    const {categoryData} = this.props
     return (
       <div>
         <CreateContent
@@ -116,8 +110,11 @@ class Category extends React.Component<Props, State> {
           {...this.state}
           onSubmitDetail={this.onSubmitDetail.bind(this)}
           onClickDelete={this.onClickDelete.bind(this)}
-          list={categories.categories}/>
-        <SnackbarWithMessage errors={err} succeeded={this.state.succeeded} deleted={this.state.deleted}/>
+          list={categoryData.categories}/>
+        <SnackbarWithMessage
+          isError={Object.keys(this.state.errors).length > 0}
+          succeeded={this.state.succeeded}
+          deleted={this.state.deleted}/>
       </div>
     )
   }

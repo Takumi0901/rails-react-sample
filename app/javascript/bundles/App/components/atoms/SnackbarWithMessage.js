@@ -1,23 +1,21 @@
 // @flow
 import React from "react"
 import Snackbar from 'material-ui/Snackbar/index'
+import {pushErrorMessage} from '../../helper/ErrorMessages'
 
-const SnackbarWithMessage = ({errors, succeeded, deleted}: {errors: Array<any>, succeeded: boolean, deleted: boolean}) => {
-  let text = ''
-  if(succeeded) {
-    text = "更新しました"
-  } else if(errors.length > 0) {
-    text = "isError"
-  } else if(deleted) {
-    text = "削除しました"
-  }
+type Props = {
+  isError: boolean,
+  succeeded: boolean,
+  deleted: boolean
+}
 
+const SnackbarWithMessage = ({isError = false, succeeded, deleted}: Props) => {
   return (
     <Snackbar
-      open={succeeded || deleted || errors.length > 0}
-      message={text}
+      open={succeeded || deleted || isError}
+      message={pushErrorMessage({isError, succeeded, deleted})}
       autoHideDuration={4000}
-      bodyStyle={(errors.length > 0 || deleted) ? {background: "rgb(255, 64, 129)"} : {}}
+      bodyStyle={(isError || deleted) ? {background: "rgb(255, 64, 129)"} : {}}
     />
   )
 }

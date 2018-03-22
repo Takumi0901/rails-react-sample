@@ -2,7 +2,7 @@ import gql from "graphql-tag"
 
 export const FETCH_ALL_BOOKS_QUERY = gql`
   query {
-    list {
+    books {
       id
       name
     }
@@ -11,7 +11,7 @@ export const FETCH_ALL_BOOKS_QUERY = gql`
 
 export const FETCH_BOOK_QUERY = gql`
   query fetchBook($id: ID!){
-    item(id: $id) {
+    book(id: $id) {
       id
       name
       category_id

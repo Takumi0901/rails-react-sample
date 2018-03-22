@@ -9,10 +9,10 @@ import {FETCH_ALL_CATEGORIES_QUERY} from "../../actions/Category"
 
 export default withRouter(compose(
   graphql(FETCH_ALL_BOOKS_QUERY, {
-    name: 'books'
+    name: 'booksData'
   }),
   graphql(FETCH_BOOK_QUERY, {
-    name: 'book',
+    name: 'bookData',
     options: (ownProps) => ({
       variables: {
         id: parseInt(ownProps.match.params.bookId)
@@ -26,6 +26,6 @@ export default withRouter(compose(
     name: 'destroyBook'
   }),
   graphql(FETCH_ALL_CATEGORIES_QUERY, {
-    name: 'categories'
+    name: 'categoryData'
   })
 )(EditBook))

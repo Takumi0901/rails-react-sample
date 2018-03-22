@@ -12,39 +12,28 @@ type Props = {
   card: Object,
   onSubmit: Object,
   onDelete: Object,
-  book: any,
-  books: any,
+  bookData: any,
+  booksData: any,
   errors: Object,
   succeeded: boolean,
   deleted: boolean,
   categories: Array<any>
 }
 
-const UpdateBookContent = ({card, onSubmit, onDelete, book, books, errors, succeeded, deleted, categories}: Props) => {
+const UpdateBookContent = ({card, onSubmit, onDelete, bookData, booksData, errors, succeeded, deleted, categories}: Props) => {
   const initialValues = {
-    name: book.item && book.item.name,
-    description: book.item && book.item.description,
-    author: book.item && book.item.author,
-    categoryId: book.item && book.item.category_id,
-    url: book.item && book.item.url
-  }
-
-
-  let err = []
-
-  if(Object.keys(errors).length > 0) {
-    err.push(errors.message)
-  } else if(book.error) {
-    err.push(book.error.message)
-  } else if(books.error) {
-    err.push(books.error.message)
+    name: bookData.book && bookData.book.name,
+    description: bookData.book && bookData.book.description,
+    author: bookData.book && bookData.book.author,
+    categoryId: bookData.book && bookData.book.category_id,
+    url: bookData.book && bookData.book.url
   }
 
   return (
     <Card>
       <CardTitle title={card.title} subtitle={card.subtitle}/>
       <Form
-        initialValues={book.item && initialValues}
+        initialValues={bookData.book && initialValues}
         onSubmit={onSubmit.method}
         render={({ handleSubmit }) => (
           <div>
@@ -53,7 +42,14 @@ const UpdateBookContent = ({card, onSubmit, onDelete, book, books, errors, succe
           </div>
         )}
       />
-      <SnackbarWithMessage errors={err} succeeded={succeeded} deleted={deleted}/>
+      <SnackbarWithMessage
+        isError={
+          Object.keys(errors).length > 0 ||
+          (bookData && bookData.error && bookData.error.message.length > 0) ||
+          (bookData && booksData.error && booksData.error.message.length > 0)
+        }
+        succeeded={succeeded}
+        deleted={deleted}/>
     </Card>
   )
 }
