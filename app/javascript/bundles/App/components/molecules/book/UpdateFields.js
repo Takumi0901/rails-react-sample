@@ -1,12 +1,14 @@
 // @flow
 import React from "react"
 import {Field} from 'react-final-form'
+import {gray300} from 'material-ui/styles/colors'
 import FormField from "../../atoms/FormField"
 import FormSelectField from "../../atoms/FormSelectField"
+import FieldDropZone from "../FieldDropZone"
 import {required, url, composeValidators} from "../../../helper/Validate"
 import CardText from 'material-ui/Card/CardText'
 
-const UpdateBookFields = ({categories}: {categories: Array<any>}) => (
+const UpdateBookFields = ({categories, onHandleSelect, onHandleRemove, dropDownImage}: {categories: Array<any>, onHandleSelect: Function, onHandleRemove: Function, dropDownImage: Object}) => (
   <CardText>
     <Field
       name="name"
@@ -15,8 +17,17 @@ const UpdateBookFields = ({categories}: {categories: Array<any>}) => (
       floatingLabelText="本のタイトルを入力"
       floatingLabelFixed={true}
       fullWidth={true}
-      validate={composeValidators(required)}
+      // validate={composeValidators(required)}
     />
+    <div style={{padding: "24px 0"}}>
+      <Field
+        name="image"
+        component={FieldDropZone}
+        onHandleSelect={onHandleSelect}
+        onHandleRemove={onHandleRemove}
+        dropDownImage={dropDownImage}
+      />
+    </div>
     <Field
       component={FormField}
       name="author"
@@ -24,7 +35,7 @@ const UpdateBookFields = ({categories}: {categories: Array<any>}) => (
       floatingLabelText="本の作者を入力"
       floatingLabelFixed={true}
       fullWidth={true}
-      validate={composeValidators(required)}
+      // validate={composeValidators(required)}
     />
     <Field
       component={FormSelectField}
@@ -33,7 +44,7 @@ const UpdateBookFields = ({categories}: {categories: Array<any>}) => (
       floatingLabelFixed={true}
       fullWidth={true}
       list={categories}
-      validate={composeValidators(required)}
+      // validate={composeValidators(required)}
     />
     <Field
       component={FormField}

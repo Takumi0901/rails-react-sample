@@ -17,10 +17,26 @@ type Props = {
   errors: Object,
   succeeded: boolean,
   deleted: boolean,
-  categories: Array<any>
+  categories: Array<any>,
+  onHandleSelect: Function,
+  onHandleRemove: Function,
+  dropDownImage: String
 }
 
-const UpdateBookContent = ({card, onSubmit, onDelete, bookData, booksData, errors, succeeded, deleted, categories}: Props) => {
+const UpdateBookContent = ({
+  card,
+  onSubmit,
+  onDelete,
+  bookData,
+  booksData,
+  errors,
+  succeeded,
+  deleted,
+  categories,
+  onHandleSelect,
+  onHandleRemove,
+  dropDownImage}: Props) => {
+
   const initialValues = {
     name: bookData.book && bookData.book.name,
     description: bookData.book && bookData.book.description,
@@ -37,7 +53,7 @@ const UpdateBookContent = ({card, onSubmit, onDelete, bookData, booksData, error
         onSubmit={onSubmit.method}
         render={({ handleSubmit }) => (
           <div>
-            <UpdateFields categories={categories}/>
+            <UpdateFields categories={categories} onHandleSelect={onHandleSelect} onHandleRemove={onHandleRemove} dropDownImage={dropDownImage}/>
             <UpdateActions onSubmit={onSubmit} onDelete={onDelete} handleSubmit={handleSubmit}/>
           </div>
         )}
