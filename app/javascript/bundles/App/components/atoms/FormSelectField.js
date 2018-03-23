@@ -21,7 +21,7 @@ const FormSelectField = (props: Props) => {
       fullWidth={props.fullWidth}
       errorText={props.meta && props.meta.touched && props.meta.error}>
       {props && props.list && props.list.map((e, index) => {
-        return (<MenuItem key={index} value={parseInt(e.id)} primaryText={e.name} />)
+        return (<MenuItem key={index} value={parseInt(e.id)} primaryText={e.name}/>)
       })}
     </SelectField>
   )

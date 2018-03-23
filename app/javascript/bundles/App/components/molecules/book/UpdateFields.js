@@ -1,12 +1,21 @@
 // @flow
 import React from "react"
 import {Field} from 'react-final-form'
+import {gray300} from 'material-ui/styles/colors'
 import FormField from "../../atoms/FormField"
 import FormSelectField from "../../atoms/FormSelectField"
+import FieldDropZone from "../FieldDropZone"
 import {required, url, composeValidators} from "../../../helper/Validate"
 import CardText from 'material-ui/Card/CardText'
 
-const UpdateBookFields = ({categories}: {categories: Array<any>}) => (
+type Props = {
+  categories: Array<any>,
+  onHandleSelect: Function,
+  onHandleRemove: Function,
+  dropDownImage: Object
+}
+
+const UpdateBookFields = (props: Props) => (
   <CardText>
     <Field
       name="name"
@@ -16,6 +25,11 @@ const UpdateBookFields = ({categories}: {categories: Array<any>}) => (
       floatingLabelFixed={true}
       fullWidth={true}
       validate={composeValidators(required)}
+    />
+    <FieldDropZone
+      onHandleSelect={props.onHandleSelect}
+      onHandleRemove={props.onHandleRemove}
+      dropDownImage={props.dropDownImage}
     />
     <Field
       component={FormField}
@@ -32,14 +46,14 @@ const UpdateBookFields = ({categories}: {categories: Array<any>}) => (
       floatingLabelText="本のカテゴリを選択"
       floatingLabelFixed={true}
       fullWidth={true}
-      list={categories}
+      list={props.categories}
       validate={composeValidators(required)}
     />
     <Field
       component={FormField}
       name="url"
       hintText="例) http://exampl.com"
-      floatingLabelText="AmazonのURLを入力"
+      floatingLabelText="wikipwdia"
       floatingLabelFixed={true}
       fullWidth={true}
       validate={composeValidators(url)}

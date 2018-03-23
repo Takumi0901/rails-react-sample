@@ -5,12 +5,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import routes from './routes'
 
 import { ApolloClient } from 'apollo-client'
+import { createUploadLink } from 'apollo-upload-client'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
 const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content')
 const client = new ApolloClient({
-  link: new HttpLink({
+  link: createUploadLink({
     credentials: 'same-origin',
     headers: {
       'X-CSRF-Token': csrfToken

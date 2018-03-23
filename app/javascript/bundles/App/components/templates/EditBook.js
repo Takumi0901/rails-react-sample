@@ -14,25 +14,28 @@ type Props = {
   handleSubmit: Function,
   bookData: Object,
   booksData: any,
-  categoryData: Object
+  categoryData: Object,
+  updatePicture: Function
 }
 
 type State = {
   errors: Object,
   succeeded: boolean,
-  deleted: boolean
+  deleted: boolean,
+  dropDownImage: Object
 }
 
 class EditBook extends React.Component<Props, State> {
   constructor() {
     super()
-    this.state = FETCH_INITIAL_STATE
+    this.state = {...FETCH_INITIAL_STATE, dropDownImage: {}}
   }
 
   onSubmit(values) {
-    const {match, updateBook} = this.props
+    const {match, updateBook, bookData} = this.props
+    const file = this.state.dropDownImage.name ? this.state.dropDownImage.name : bookData.book.picture
     updateBook({
-      variables: {id: match.params.bookId, ...values},
+      variables: {id: match.params.bookId, file: file, ...values},
       refetchQueries: [{
         query: FETCH_BOOK_QUERY,
         variables: {
@@ -74,6 +77,27 @@ class EditBook extends React.Component<Props, State> {
     return prevError !== this.props.bookData.error && this.props.bookData.error
   }
 
+  onHandleSelect(files) {
+    const {updatePicture} = this.props
+    this.setState({
+      dropDownImage: files[0]
+    })
+    updatePicture({
+      variables: {path: files[0]}
+    }).then(() => {
+      this.setState(FETCH_SUCCEEDED_STATE)
+    }).catch((errors) => {
+      console.log(errors)
+      this.setState(FETCH_IS_ERROR_STATE(errors))
+    })
+  }
+
+  onHandleRemove() {
+    this.setState({
+      dropDownImage: {}
+    })
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if(this.isSucceededDecision(prevState.succeeded)) {
       setTimeout(() => this.setState(FETCH_INITIAL_STATE), 1000)
@@ -81,17 +105,23 @@ class EditBook extends React.Component<Props, State> {
     if(this.isDeletedDecision(prevState.deleted) || this.isErrorDecision(prevProps.bookData.error)) {
       setTimeout(() => this.props.history.push('/'), 1000)
     }
+    if(prevProps.bookData !== this.props.bookData && this.props.bookData.book) {
+      const files = this.props.bookData.book.picture ? {picture: this.props.bookData.book.picture} : {}
+      this.setState({
+        dropDownImage: files
+      })
+    }
   }
 
 
   render() {
-    const {bookData, booksData, categoryData} = this.props
+    const {bookData} = this.props
     return (
       <UpdateContent
         {...this.state}
-        bookData={bookData}
-        booksData={booksData}
-        categories={categoryData.categories}
+        {...this.props}
+        onHandleSelect={this.onHandleSelect.bind(this)}
+        onHandleRemove={this.onHandleRemove.bind(this)}
         card={{title: bookData.book ? `${bookData.book.name}` : "no-title", subtitle: '本の編集をします'}}
         onSubmit={{label: '変更する', method: this.onSubmit.bind(this)}}
         onDelete={{label: "削除する", method: this.onClickDelete.bind(this)}}

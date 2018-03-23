@@ -10,8 +10,10 @@ type Props = {
   docked: boolean
 }
 
-const ListItem = ({path, name, onToggle, docked}: Props) => (
-  <Link to={path}><MenuItem onClick={() => !docked && onToggle()}>{name}</MenuItem></Link>
+const LinkMenuItem = (props: Props) => (
+  <Link to={props.path}>
+    <MenuItem onClick={() => !props.docked && props.onToggle()}>{props.name}</MenuItem>
+  </Link>
 )
 
-export default ListItem
+export default LinkMenuItem

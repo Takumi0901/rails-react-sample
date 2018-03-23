@@ -112,9 +112,8 @@ class Category extends React.Component<Props, State> {
           onClickDelete={this.onClickDelete.bind(this)}
           list={categoryData.categories}/>
         <SnackbarWithMessage
-          isError={Object.keys(this.state.errors).length > 0}
-          succeeded={this.state.succeeded}
-          deleted={this.state.deleted}/>
+          {...this.state}
+          isError={Object.keys(this.state.errors).length > 0}/>
       </div>
     )
   }

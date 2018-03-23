@@ -12,16 +12,16 @@ type Props = {
   onDelete: Object
 }
 
-const CreateCategoryContent = ({card, onSubmit, onDelete}: Props) => {
+const CreateCategoryContent = (props: Props) => {
   return (
     <Card style={{marginBottom: "24px"}}>
-      <CardTitle title={card.title} subtitle={card.subtitle}/>
+      <CardTitle title={props.card.title} subtitle={props.card.subtitle}/>
       <Form
-        onSubmit={onSubmit.method}
+        onSubmit={props.onSubmit.method}
         render={({ handleSubmit }) => (
           <div>
             <CreateFields/>
-            <UpdateActions onSubmit={onSubmit} onDelete={onDelete} handleSubmit={handleSubmit}/>
+            <UpdateActions onSubmit={props.onSubmit} onDelete={props.onDelete} handleSubmit={handleSubmit}/>
           </div>
         )}
       />
