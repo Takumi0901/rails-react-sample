@@ -8,7 +8,14 @@ import FieldDropZone from "../FieldDropZone"
 import {required, url, composeValidators} from "../../../helper/Validate"
 import CardText from 'material-ui/Card/CardText'
 
-const UpdateBookFields = ({categories, onHandleSelect, onHandleRemove, dropDownImage}: {categories: Array<any>, onHandleSelect: Function, onHandleRemove: Function, dropDownImage: Object}) => (
+type Props = {
+  categories: Array<any>,
+  onHandleSelect: Function,
+  onHandleRemove: Function,
+  dropDownImage: Object
+}
+
+const UpdateBookFields = (props: Props) => (
   <CardText>
     <Field
       name="name"
@@ -23,9 +30,9 @@ const UpdateBookFields = ({categories, onHandleSelect, onHandleRemove, dropDownI
       <Field
         name="image"
         component={FieldDropZone}
-        onHandleSelect={onHandleSelect}
-        onHandleRemove={onHandleRemove}
-        dropDownImage={dropDownImage}
+        onHandleSelect={props.onHandleSelect}
+        onHandleRemove={props.onHandleRemove}
+        dropDownImage={props.dropDownImage}
       />
     </div>
     <Field
@@ -43,7 +50,7 @@ const UpdateBookFields = ({categories, onHandleSelect, onHandleRemove, dropDownI
       floatingLabelText="本のカテゴリを選択"
       floatingLabelFixed={true}
       fullWidth={true}
-      list={categories}
+      list={props.categories}
       // validate={composeValidators(required)}
     />
     <Field

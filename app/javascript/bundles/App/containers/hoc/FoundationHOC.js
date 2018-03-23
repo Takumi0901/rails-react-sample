@@ -56,14 +56,11 @@ const FoundationHOC = (WrappedComponent: Object) => {
       return (
         <div>
           <NavBar
-            onToggle={() => this.handleToggle()}
-            open={this.state.open}
-            docked={this.state.docked}
-          />
+            {...this.state}
+            onToggle={() => this.handleToggle()}/>
           <SideBar
+            {...this.state}
             onToggle={() => this.handleToggle()}
-            open={this.state.open}
-            docked={this.state.docked}
             list={booksData.books}
           />
           <Container docked={this.state.docked}>

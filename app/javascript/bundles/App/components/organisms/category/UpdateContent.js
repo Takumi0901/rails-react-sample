@@ -17,24 +17,24 @@ type Props = {
   onSubmitDetail: Function
 }
 
-const CategoriesContent = ({list, onClickDelete, onSubmitDetail}: Props) => {
+const CategoriesContent = (props: Props) => {
 
   return (
     <Card>
-      {list && list.map((e, index) => {
+      {props.list && props.list.map((e, index) => {
         return (
           <Form
             key={index}
             initialValues={{id: e.id, name: e.name}}
-            onSubmit={onSubmitDetail}
+            onSubmit={props.onSubmitDetail}
             mutators={{setFieldData}}>
             {({ mutators }) => {
               return (
                 <div style={{position: "relative"}}>
-                  <AutoSave setFieldData={mutators.setFieldData} save={onSubmitDetail}/>
+                  <AutoSave setFieldData={mutators.setFieldData} save={props.onSubmitDetail}/>
                   <MenuItem
                     style={{paddingTop: " 16px", paddingBottom: "16px"}}
-                    rightIcon={<Delete color={pink300} onClick={() => onClickDelete(e.id)}/>}>
+                    rightIcon={<Delete color={pink300} onClick={() => props.onClickDelete(e.id)}/>}>
                     <Field
                       name="name"
                       component={FormField}

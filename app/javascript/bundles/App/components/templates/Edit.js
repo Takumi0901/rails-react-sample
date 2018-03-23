@@ -26,7 +26,7 @@ type State = {
 class EditBook extends React.Component<Props, State> {
   constructor() {
     super()
-    this.state = FETCH_INITIAL_STATE
+    this.state = {...FETCH_INITIAL_STATE, dropDownImage: {}}
   }
 
   onSubmit(values) {
@@ -74,6 +74,21 @@ class EditBook extends React.Component<Props, State> {
     return prevError !== this.props.bookData.error && this.props.bookData.error
   }
 
+  onHandleSelect(files) {
+    console.log('*****************')
+    console.log(files[0].preview)
+    console.log('*****************')
+    this.setState({
+      dropDownImage: files[0]
+    })
+  }
+
+  onHandleRemove() {
+    this.setState({
+      dropDownImage: {}
+    })
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if(this.isSucceededDecision(prevState.succeeded)) {
       setTimeout(() => this.setState(FETCH_INITIAL_STATE), 1000)
@@ -85,13 +100,13 @@ class EditBook extends React.Component<Props, State> {
 
 
   render() {
-    const {bookData, booksData, categoryData} = this.props
+    const {bookData} = this.props
     return (
       <UpdateContent
         {...this.state}
-        bookData={bookData}
-        booksData={booksData}
-        categories={categoryData.categories}
+        {...this.props}
+        onHandleSelect={this.onHandleSelect.bind(this)}
+        onHandleRemove={this.onHandleRemove.bind(this)}
         card={{title: bookData.book ? `${bookData.book.name}` : "no-title", subtitle: '本の編集をします'}}
         onSubmit={{label: '変更する', method: this.onSubmit.bind(this)}}
         onDelete={{label: "削除する", method: this.onClickDelete.bind(this)}}

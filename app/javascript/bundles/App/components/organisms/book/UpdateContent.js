@@ -17,55 +17,50 @@ type Props = {
   errors: Object,
   succeeded: boolean,
   deleted: boolean,
-  categories: Array<any>,
+  categoryData: Object,
   onHandleSelect: Function,
   onHandleRemove: Function,
   dropDownImage: String
 }
 
-const UpdateBookContent = ({
-  card,
-  onSubmit,
-  onDelete,
-  bookData,
-  booksData,
-  errors,
-  succeeded,
-  deleted,
-  categories,
-  onHandleSelect,
-  onHandleRemove,
-  dropDownImage}: Props) => {
+const UpdateBookContent = (props: Props) => {
 
-  const initialValues = {
-    name: bookData.book && bookData.book.name,
-    description: bookData.book && bookData.book.description,
-    author: bookData.book && bookData.book.author,
-    categoryId: bookData.book && bookData.book.category_id,
-    url: bookData.book && bookData.book.url
-  }
+  const initialValues = props.bookData.book ? {
+    name: props.bookData.book.name,
+    description: props.bookData.book.description,
+    author: props.bookData.book.author,
+    categoryId: props.bookData.book.category_id,
+    url: props.bookData.book.url
+  } : {}
 
   return (
     <Card>
-      <CardTitle title={card.title} subtitle={card.subtitle}/>
+      <CardTitle title={props.card.title} subtitle={props.card.subtitle}/>
       <Form
-        initialValues={bookData.book && initialValues}
-        onSubmit={onSubmit.method}
+        initialValues={initialValues}
+        onSubmit={props.onSubmit.method}
         render={({ handleSubmit }) => (
           <div>
-            <UpdateFields categories={categories} onHandleSelect={onHandleSelect} onHandleRemove={onHandleRemove} dropDownImage={dropDownImage}/>
-            <UpdateActions onSubmit={onSubmit} onDelete={onDelete} handleSubmit={handleSubmit}/>
+            <UpdateFields
+              categories={props.categoryData.categories}
+              onHandleSelect={props.onHandleSelect}
+              onHandleRemove={props.onHandleRemove}
+              dropDownImage={props.dropDownImage}/>
+            <UpdateActions
+              onSubmit={props.onSubmit}
+              onDelete={props.onDelete}
+              handleSubmit={handleSubmit}/>
           </div>
         )}
       />
       <SnackbarWithMessage
         isError={
-          Object.keys(errors).length > 0 ||
-          (bookData && bookData.error && bookData.error.message.length > 0) ||
-          (bookData && booksData.error && booksData.error.message.length > 0)
+          Object.keys(props.errors).length > 0 ||
+          (props.bookData && props.bookData.error && props.bookData.error.message.length > 0) ||
+          (props.bookData && props.booksData.error && props.booksData.error.message.length > 0)
         }
-        succeeded={succeeded}
-        deleted={deleted}/>
+        succeeded={props.succeeded}
+        deleted={props.deleted}/>
     </Card>
   )
 }

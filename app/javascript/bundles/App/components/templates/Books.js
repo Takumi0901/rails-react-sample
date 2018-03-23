@@ -60,13 +60,11 @@ class Books extends React.Component<Props, State> {
   }
 
   render() {
-    const {bookData, categoryData} = this.props
     return (
       <UpdateContent
         {...this.state}
+        {...this.props}
         bookData={false}
-        booksData={bookData}
-        categories={categoryData.categories}
         card={{title: '本の登録', subtitle: '本の登録をします'}}
         onHandleSelect={this.onHandleSelect.bind(this)}
         onHandleRemove={this.onHandleRemove.bind(this)}

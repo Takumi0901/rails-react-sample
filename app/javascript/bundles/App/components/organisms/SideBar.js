@@ -12,23 +12,23 @@ type Props = {
   docked: boolean
 }
 
-const SideBar = ({onToggle, list, open, docked}: Props) => (
+const SideBar = (props: Props) => (
   <Drawer
-    docked={docked}
+    docked={props.docked}
     width={260}
-    open={open}
-    onRequestChange={() => onToggle()}
+    open={props.open}
+    onRequestChange={() => props.onToggle()}
   >
     <AppBar
       title="ReactOnRails"
       showMenuIconButton={false}
     />
-    <ListItem onToggle={onToggle} docked={docked} path={"/"} name="本を登録する"/>
-    <ListItem onToggle={onToggle} docked={docked} path={"/category"} name="カテゴリを登録する"/>
+    <ListItem onToggle={props.onToggle} docked={props.docked} path={"/"} name="本を登録する"/>
+    <ListItem onToggle={props.onToggle} docked={props.docked} path={"/category"} name="カテゴリを登録する"/>
     <Divider/>
-    {list && list.length > 0 && list.map((e, key) => {
+    {props.list && props.list.length > 0 && props.list.map((e, key) => {
       return (
-        <ListItem onToggle={onToggle} docked={docked} key={key} path={`/book/${e.id}`} name={e.name}/>
+        <ListItem onToggle={props.onToggle} docked={props.docked} key={key} path={`/book/${e.id}`} name={e.name}/>
       )
     })}
   </Drawer>

@@ -1,11 +1,16 @@
 /* @flow */
 import React from "react"
 
-const Container = ({children, docked}: {children: Object, docked: boolean}) => {
+type Props = {
+  children: Object,
+  docked: boolean
+}
+
+const Container = (props: Props) => {
 
   let divStyles = {}
 
-  if(docked) {
+  if(props.docked) {
     divStyles = {maxWidth: "800px", width: "auto", margin: "0 0 0 276px", padding: "92px 32px 0 16px"}
   } else {
     divStyles = {width: "auto", margin: "0 auto", padding: "92px 16px 0"}
@@ -13,7 +18,7 @@ const Container = ({children, docked}: {children: Object, docked: boolean}) => {
 
   return (
     <div style={divStyles}>
-      {children}
+      {props.children}
     </div>
   )
 }
