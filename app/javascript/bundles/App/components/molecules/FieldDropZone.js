@@ -30,11 +30,8 @@ const FieldDropZoneInner = () => {
 }
 
 const FieldDropZone = (props) => {
-  console.log('*****************')
-  console.log(props)
-  console.log('*****************')
   return (
-    <div>
+    <div style={{padding: "24px 0"}}>
       {Object.keys(props.dropDownImage).length > 0 ?
         <div>
           <Avatar
@@ -50,7 +47,6 @@ const FieldDropZone = (props) => {
           style={style}
           activeStyle={{}}
           rejectStyle={{}}
-          onChange={(e, index, value) => props.input.onChange(props.dropDownImage.preview)}
           onDrop={props.onHandleSelect}
           multiple={false}
           accept={''}>

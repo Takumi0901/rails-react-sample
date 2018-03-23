@@ -26,15 +26,11 @@ const UpdateBookFields = (props: Props) => (
       fullWidth={true}
       // validate={composeValidators(required)}
     />
-    <div style={{padding: "24px 0"}}>
-      <Field
-        name="image"
-        component={FieldDropZone}
-        onHandleSelect={props.onHandleSelect}
-        onHandleRemove={props.onHandleRemove}
-        dropDownImage={props.dropDownImage}
-      />
-    </div>
+    <FieldDropZone
+      onHandleSelect={props.onHandleSelect}
+      onHandleRemove={props.onHandleRemove}
+      dropDownImage={props.dropDownImage}
+    />
     <Field
       component={FormField}
       name="author"

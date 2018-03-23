@@ -31,20 +31,26 @@ class EditBook extends React.Component<Props, State> {
 
   onSubmit(values) {
     const {match, updateBook} = this.props
-    updateBook({
-      variables: {id: match.params.bookId, ...values},
-      refetchQueries: [{
-        query: FETCH_BOOK_QUERY,
-        variables: {
-          id: match.params.bookId
-        }
-      }]
-    }).then(() => {
-      this.setState(FETCH_SUCCEEDED_STATE)
-    }).catch((errors) => {
-      console.log(errors.message)
-      this.setState(FETCH_IS_ERROR_STATE(errors))
-    })
+    console.log('*****************')
+    console.log(values)
+    console.log('*****************')
+    console.log('*****************')
+    console.log(this.state.dropDownImage)
+    console.log('*****************')
+    // updateBook({
+    //   variables: {id: match.params.bookId, ...values},
+    //   refetchQueries: [{
+    //     query: FETCH_BOOK_QUERY,
+    //     variables: {
+    //       id: match.params.bookId
+    //     }
+    //   }]
+    // }).then(() => {
+    //   this.setState(FETCH_SUCCEEDED_STATE)
+    // }).catch((errors) => {
+    //   console.log(errors.message)
+    //   this.setState(FETCH_IS_ERROR_STATE(errors))
+    // })
   }
 
   onClickDelete() {
