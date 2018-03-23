@@ -5,6 +5,7 @@ export const FETCH_ALL_BOOKS_QUERY = gql`
     books {
       id
       name
+      picture
     }
   }
 `

@@ -11,13 +11,15 @@ type Props = {
   updatePicture: Function,
   handleSubmit: Function,
   bookData: any,
+  booksData: any,
   categoryData: Object
 }
 
 type State = {
   errors: Object,
   succeeded: boolean,
-  deleted: boolean
+  deleted: boolean,
+  dropDownImage: Object
 }
 
 class Books extends React.Component<Props, State> {

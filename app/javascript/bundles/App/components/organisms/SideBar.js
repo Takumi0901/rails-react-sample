@@ -3,7 +3,8 @@ import React from 'react'
 import AppBar from 'material-ui/AppBar/AppBar'
 import Drawer from 'material-ui/Drawer/Drawer'
 import Divider from 'material-ui/Divider/Divider'
-import ListItem from '../atoms/ListItem'
+import LinkMenuItem from '../atoms/LinkMenuItem'
+import BookList from '../molecules/book/BookList'
 
 type Props = {
   onToggle: Function,
@@ -23,14 +24,10 @@ const SideBar = (props: Props) => (
       title="ReactOnRails"
       showMenuIconButton={false}
     />
-    <ListItem onToggle={props.onToggle} docked={props.docked} path={"/"} name="本を登録する"/>
-    <ListItem onToggle={props.onToggle} docked={props.docked} path={"/category"} name="カテゴリを登録する"/>
+    <LinkMenuItem onToggle={props.onToggle} docked={props.docked} path={"/"} name="本を登録する"/>
+    <LinkMenuItem onToggle={props.onToggle} docked={props.docked} path={"/category"} name="カテゴリを登録する"/>
     <Divider/>
-    {props.list && props.list.length > 0 && props.list.map((e, key) => {
-      return (
-        <ListItem onToggle={props.onToggle} docked={props.docked} key={key} path={`/book/${e.id}`} name={e.name}/>
-      )
-    })}
+    <BookList {...props}/>
   </Drawer>
 )
 

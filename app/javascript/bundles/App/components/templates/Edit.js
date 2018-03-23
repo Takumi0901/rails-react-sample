@@ -21,7 +21,8 @@ type Props = {
 type State = {
   errors: Object,
   succeeded: boolean,
-  deleted: boolean
+  deleted: boolean,
+  dropDownImage: Object
 }
 
 class EditBook extends React.Component<Props, State> {
