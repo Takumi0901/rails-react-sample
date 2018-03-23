@@ -24,7 +24,7 @@ const UpdateBookFields = (props: Props) => (
       floatingLabelText="本のタイトルを入力"
       floatingLabelFixed={true}
       fullWidth={true}
-      // validate={composeValidators(required)}
+      validate={composeValidators(required)}
     />
     <FieldDropZone
       onHandleSelect={props.onHandleSelect}
@@ -38,7 +38,7 @@ const UpdateBookFields = (props: Props) => (
       floatingLabelText="本の作者を入力"
       floatingLabelFixed={true}
       fullWidth={true}
-      // validate={composeValidators(required)}
+      validate={composeValidators(required)}
     />
     <Field
       component={FormSelectField}
@@ -47,13 +47,13 @@ const UpdateBookFields = (props: Props) => (
       floatingLabelFixed={true}
       fullWidth={true}
       list={props.categories}
-      // validate={composeValidators(required)}
+      validate={composeValidators(required)}
     />
     <Field
       component={FormField}
       name="url"
       hintText="例) http://exampl.com"
-      floatingLabelText="AmazonのURLを入力"
+      floatingLabelText="wikipwdia"
       floatingLabelFixed={true}
       fullWidth={true}
       validate={composeValidators(url)}

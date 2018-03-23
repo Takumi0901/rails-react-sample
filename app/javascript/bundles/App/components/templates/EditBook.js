@@ -32,9 +32,10 @@ class EditBook extends React.Component<Props, State> {
   }
 
   onSubmit(values) {
-    const {match, updateBook} = this.props
+    const {match, updateBook, bookData} = this.props
+    const file = this.state.dropDownImage.name ? this.state.dropDownImage.name : bookData.book.picture
     updateBook({
-      variables: {id: match.params.bookId, file: this.state.dropDownImage.name, ...values},
+      variables: {id: match.params.bookId, file: file, ...values},
       refetchQueries: [{
         query: FETCH_BOOK_QUERY,
         variables: {

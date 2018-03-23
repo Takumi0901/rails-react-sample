@@ -9,3 +9,6 @@ declare module 'react-final-form' {
 declare module 'final-form-set-field-data' {
   declare module.exports: any;
 }
+declare module 'react-dropzone' {
+  declare module.exports: any;
+}

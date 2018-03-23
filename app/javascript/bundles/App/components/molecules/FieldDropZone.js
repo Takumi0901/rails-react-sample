@@ -2,8 +2,8 @@
 import React from "react"
 import Dropzone from 'react-dropzone'
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton'
-import Avatar from 'material-ui/Avatar'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
+import Avatar from 'material-ui/Avatar/Avatar'
+import FloatingActionButton from 'material-ui/FloatingActionButton/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/clear'
 
 
