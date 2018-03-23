@@ -14,7 +14,8 @@ type Props = {
   handleSubmit: Function,
   bookData: Object,
   booksData: any,
-  categoryData: Object
+  categoryData: Object,
+  updatePicture: Function
 }
 
 type State = {
@@ -31,26 +32,20 @@ class EditBook extends React.Component<Props, State> {
 
   onSubmit(values) {
     const {match, updateBook} = this.props
-    console.log('*****************')
-    console.log(values)
-    console.log('*****************')
-    console.log('*****************')
-    console.log(this.state.dropDownImage)
-    console.log('*****************')
-    // updateBook({
-    //   variables: {id: match.params.bookId, ...values},
-    //   refetchQueries: [{
-    //     query: FETCH_BOOK_QUERY,
-    //     variables: {
-    //       id: match.params.bookId
-    //     }
-    //   }]
-    // }).then(() => {
-    //   this.setState(FETCH_SUCCEEDED_STATE)
-    // }).catch((errors) => {
-    //   console.log(errors.message)
-    //   this.setState(FETCH_IS_ERROR_STATE(errors))
-    // })
+    updateBook({
+      variables: {id: match.params.bookId, file: this.state.dropDownImage.name, ...values},
+      refetchQueries: [{
+        query: FETCH_BOOK_QUERY,
+        variables: {
+          id: match.params.bookId
+        }
+      }]
+    }).then(() => {
+      this.setState(FETCH_SUCCEEDED_STATE)
+    }).catch((errors) => {
+      console.log(errors.message)
+      this.setState(FETCH_IS_ERROR_STATE(errors))
+    })
   }
 
   onClickDelete() {
@@ -81,11 +76,17 @@ class EditBook extends React.Component<Props, State> {
   }
 
   onHandleSelect(files) {
-    console.log('*****************')
-    console.log(files[0].preview)
-    console.log('*****************')
+    const {updatePicture} = this.props
     this.setState({
       dropDownImage: files[0]
+    })
+    updatePicture({
+      variables: {path: files[0]}
+    }).then(() => {
+      this.setState(FETCH_SUCCEEDED_STATE)
+    }).catch((errors) => {
+      console.log(errors)
+      this.setState(FETCH_IS_ERROR_STATE(errors))
     })
   }
 
@@ -101,6 +102,12 @@ class EditBook extends React.Component<Props, State> {
     }
     if(this.isDeletedDecision(prevState.deleted) || this.isErrorDecision(prevProps.bookData.error)) {
       setTimeout(() => this.props.history.push('/'), 1000)
+    }
+    if(prevProps.bookData !== this.props.bookData && this.props.bookData.book) {
+      const files = this.props.bookData.book.picture ? {picture: this.props.bookData.book.picture} : {}
+      this.setState({
+        dropDownImage: files
+      })
     }
   }
 

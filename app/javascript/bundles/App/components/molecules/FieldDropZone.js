@@ -1,10 +1,17 @@
+// @flow
 import React from "react"
 import Dropzone from 'react-dropzone'
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton'
 import Avatar from 'material-ui/Avatar'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/clear'
-import DropZoneHOC from '../../containers/hoc/DropZoneHOC'
+
+
+type Props = {
+  dropDownImage: Object,
+  onHandleRemove: Function,
+  onHandleSelect: Function
+}
 
 const style = {
   width: 100 + '%',
@@ -29,19 +36,25 @@ const FieldDropZoneInner = () => {
   )
 }
 
-const FieldDropZone = (props) => {
+const FieldDropZonePreview = (props: Props) => {
+  return (
+    <div>
+      <Avatar
+        src={props.dropDownImage.picture ? `/assets/images/${props.dropDownImage.picture}` : props.dropDownImage.preview}
+        size={200}
+      />
+      <FloatingActionButton mini={true} secondary={true} onClick={props.onHandleRemove}>
+        <ContentAdd/>
+      </FloatingActionButton>
+    </div>
+  )
+}
+
+const FieldDropZone = (props: Props) => {
   return (
     <div style={{padding: "24px 0"}}>
       {Object.keys(props.dropDownImage).length > 0 ?
-        <div>
-          <Avatar
-            src={props.dropDownImage.preview}
-            size={200}
-          />
-          <FloatingActionButton mini={true} secondary={true} onClick={props.onHandleRemove}>
-            <ContentAdd/>
-          </FloatingActionButton>
-        </div>
+        <FieldDropZonePreview {...props}/>
         :
         <Dropzone
           style={style}

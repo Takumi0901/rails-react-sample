@@ -18,33 +18,64 @@ export const FETCH_BOOK_QUERY = gql`
       description
       author
       url
+      picture
     }
   }
 `
 
 export const CREATE_BOOK_MUTATION = gql`
-  mutation CreateBook($name: String!, $description: String, $author: String!, $categoryId: Int!, $url: String) {
-    CreateBook(input: {name: $name, description: $description, author: $author, category_id: $categoryId, url: $url}) {
+  mutation CreateBook(
+    $name: String!,
+    $description: String,
+    $author: String!,
+    $categoryId: Int!,
+    $url: String,
+    $file: String
+  ) {
+    CreateBook(input: {
+      name: $name,
+      description: $description,
+      author: $author,
+      category_id: $categoryId,
+      url: $url,
+      file: $file
+    }) {
       book {
         name
         category_id
         description
         author
         url
+        picture
       }
     }
   }
 `
 
 export const UPDATE_BOOK_MUTATION = gql`
-  mutation UpdateBook($id: ID!, $name: String!, $description: String, $author: String!, $categoryId: Int!, $url: String) {
-    UpdateBook(input: {id: $id, name: $name, description: $description, author: $author, category_id: $categoryId, url: $url}) {
+  mutation UpdateBook($id: ID!,
+    $name: String!,
+    $description: String,
+    $author: String!,
+    $categoryId: Int!,
+    $url: String,
+    $file: String
+  ) {
+    UpdateBook(input: {id: $id,
+      name: $name,
+      description: $description,
+      author: $author,
+      category_id: $categoryId,
+      url: $url,
+      file: $file
+    }) {
       book {
         name
         category_id
         description
         author
         url
+        picture
       }
     }
   }

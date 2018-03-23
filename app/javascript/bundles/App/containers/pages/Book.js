@@ -5,6 +5,7 @@ import {
   FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY, UPDATE_BOOK_MUTATION, DESTROY_BOOK_MUTATION
 } from '../../actions/Books'
 import {FETCH_ALL_CATEGORIES_QUERY} from "../../actions/Category"
+import {UPDATE_PICTURE_MUTATION} from "../../actions/Picture"
 
 
 export default withRouter(compose(
@@ -27,5 +28,8 @@ export default withRouter(compose(
   }),
   graphql(FETCH_ALL_CATEGORIES_QUERY, {
     name: 'categoryData'
+  }),
+  graphql(UPDATE_PICTURE_MUTATION, {
+    name: 'updatePicture'
   })
 )(EditBook))

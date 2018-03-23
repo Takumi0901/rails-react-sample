@@ -8,6 +8,7 @@ import FieldDropZone from "../molecules/FieldDropZone"
 
 type Props = {
   createBook: Function,
+  updatePicture: Function,
   handleSubmit: Function,
   bookData: any,
   categoryData: Object
@@ -26,11 +27,17 @@ class Books extends React.Component<Props, State> {
   }
 
   onHandleSelect(files) {
-    console.log('*****************')
-    console.log(files[0].preview)
-    console.log('*****************')
+    const {updatePicture} = this.props
     this.setState({
       dropDownImage: files[0]
+    })
+    updatePicture({
+      variables: {path: files[0]}
+    }).then(() => {
+      this.setState(FETCH_SUCCEEDED_STATE)
+    }).catch((errors) => {
+      console.log(errors)
+      this.setState(FETCH_IS_ERROR_STATE(errors))
     })
   }
 
@@ -42,21 +49,18 @@ class Books extends React.Component<Props, State> {
 
   onSubmit(values, e) {
     const {createBook} = this.props
-    console.log('*****************')
-    console.log(values)
-    console.log('*****************')
-    // createBook({
-    //   variables: {...values},
-    //   refetchQueries: [{
-    //     query: FETCH_ALL_BOOKS_QUERY
-    //   }]
-    // }).then(() => {
-    //   e.reset()
-    //   this.setState(FETCH_SUCCEEDED_STATE)
-    // }).catch((errors) => {
-    //   console.log(errors)
-    //   this.setState(FETCH_IS_ERROR_STATE(errors))
-    // })
+    createBook({
+      variables: {...values, file: this.state.dropDownImage.name},
+      refetchQueries: [{
+        query: FETCH_ALL_BOOKS_QUERY
+      }]
+    }).then(() => {
+      e.reset()
+      this.setState({...FETCH_SUCCEEDED_STATE, dropDownImage: {}})
+    }).catch((errors) => {
+      console.log(errors)
+      this.setState({...FETCH_IS_ERROR_STATE(errors), dropDownImage: {}})
+    })
   }
 
   render() {

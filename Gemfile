@@ -61,3 +61,4 @@ gem 'mini_racer', platforms: :ruby
 gem 'mysql2'
 gem 'graphql'
 gem 'graphiql-rails', group: :development
+gem 'graphql_apollo_upload_client_params', :git => 'https://github.com/github0013/graphql_apollo_upload_client_params'

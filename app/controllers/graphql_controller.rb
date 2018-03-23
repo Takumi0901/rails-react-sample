@@ -1,8 +1,12 @@
 class GraphqlController < ApplicationController
   def execute
-    variables = ensure_hash(params[:variables])
-    query = params[:query]
-    operation_name = params[:operationName]
+    converted_params = GraphqlApolloUploadClientParams.convert(params)
+    variables = converted_params.variables
+    query = converted_params.query
+    operation_name = converted_params.operation_name
+    # variables = ensure_hash(params[:variables])
+    # query = params[:query]
+    # operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
       # current_user: current_user,

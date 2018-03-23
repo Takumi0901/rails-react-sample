@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/github0013/graphql_apollo_upload_client_params
+  revision: 4ecba24fcc31d78761ffc7de80e408630558edaa
+  specs:
+    graphql_apollo_upload_client_params (0.1.0)
+      hashie
+
+GIT
   remote: https://github.com/rails/webpacker.git
   revision: f62c315e23fd5f199909653afc327675a695e206
   specs:
@@ -80,6 +87,7 @@ GEM
     graphiql-rails (1.4.2)
       rails
     graphql (1.6.4)
+    hashie (3.5.7)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -208,6 +216,7 @@ DEPENDENCIES
   ffi (= 1.9.18)
   graphiql-rails
   graphql
+  graphql_apollo_upload_client_params!
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   mini_racer

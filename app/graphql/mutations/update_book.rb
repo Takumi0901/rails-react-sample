@@ -7,6 +7,7 @@ Mutations::UpdateBook = GraphQL::Relay::Mutation.define do
   input_field :category_id, !types.Int
   input_field :description, types.String
   input_field :url, types.String
+  input_field :file, types.String
 
   return_field :book, !Types::BookType
 
@@ -15,12 +16,12 @@ Mutations::UpdateBook = GraphQL::Relay::Mutation.define do
   resolve ->(_obj, args, ctx) {
     begin
       book = Book.find_by_id(args[:id])
-
       book.name = args[:name]
       book.description = args[:description]
       book.category_id = args[:category_id]
       book.author = args[:author]
       book.url = args[:url]
+      book.picture = args[:file]
       book.save
     rescue => e
       return GraphQL::ExecutionError.new(e.message)
