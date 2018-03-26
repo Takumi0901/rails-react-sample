@@ -8,4 +8,5 @@ Types::BookType = GraphQL::ObjectType.define do
   field :author, types.String
   field :url, types.String
   field :picture, types.String
+  connection :posts, Types::PostType.connection_type
 end

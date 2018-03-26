@@ -1,5 +1,15 @@
 import gql from "graphql-tag"
 
+
+export const FETCH_ALL_POSTS_QUERY = gql`
+  query {
+    posts {
+      id
+      subject
+    }
+  }
+`
+
 export const FETCH_ALL_BOOKS_QUERY = gql`
   query {
     books {
@@ -20,6 +30,13 @@ export const FETCH_BOOK_QUERY = gql`
       author
       url
       picture
+      posts {
+        edges {
+          node {
+            id
+          }
+        }
+      }
     }
   }
 `

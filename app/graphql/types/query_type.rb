@@ -16,6 +16,13 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :posts, types[Types::PostType] do
+    description "An example field added by the generator"
+    resolve ->(obj, args, ctx) {
+      Post.order("id DESC")
+    }
+  end
+
   field :categories, types[Types::CategoryType] do
     description "An example field added by the generator"
     resolve ->(obj, args, ctx) {

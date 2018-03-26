@@ -17,6 +17,9 @@ class DetailBook extends React.Component<Props> {
   }
 
   render() {
+    console.log('******************')
+    console.log(this.props)
+    console.log('******************')
     return (
       <DetailContent {...this.props}/>
     )
