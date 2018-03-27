@@ -2,9 +2,10 @@ import { graphql, compose } from 'react-apollo'
 import {withRouter} from 'react-router-dom'
 import DetailBook from "../../components/templates/DetailBook"
 import {
-  FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY, CREATE_POST_MUTATION
+  FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY
 } from '../../actions/Books'
 import {FETCH_ALL_CATEGORIES_QUERY} from "../../actions/Category"
+import {CREATE_POST_MUTATION} from "../../actions/Post"
 
 
 export default withRouter(compose(
@@ -24,5 +25,5 @@ export default withRouter(compose(
   }),
   graphql(CREATE_POST_MUTATION, {
     name: 'createPost'
-  }),
+  })
 )(DetailBook))
