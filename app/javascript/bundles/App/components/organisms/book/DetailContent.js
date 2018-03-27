@@ -18,7 +18,7 @@ const DetailBookContent = (props: Props) => {
   if(props.bookData.book) {
     const [category] = props.categoryData.categories.filter(e => parseInt(e.id) === props.bookData.book.category_id)
     return (
-      <Card>
+      <Card style={{marginBottom: "24px"}}>
         <CardTitle title={props.bookData.book.name} subtitle={`${props.bookData.book.author} | ${category.name}`}/>
         <CardText style={{textAlign: "center"}}>
           <Avatar src={`/assets/images/${props.bookData.book.picture ? props.bookData.book.picture : 'noimage.png'}`} size={300}/>

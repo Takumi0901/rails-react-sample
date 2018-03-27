@@ -20,6 +20,15 @@ export const FETCH_BOOK_QUERY = gql`
       author
       url
       picture
+      posts(id: $id) {
+        edges {
+          node {
+            id
+            subject
+            created_at
+          }
+        }
+      }
     }
   }
 `
