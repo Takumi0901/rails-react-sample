@@ -8,5 +8,11 @@ Types::BookType = GraphQL::ObjectType.define do
   field :author, types.String
   field :url, types.String
   field :picture, types.String
-  connection :posts, Types::PostType.connection_type
+
+  connection :posts, Types::PostType.connection_type do
+    argument :id, types.ID
+    resolve ->(_obj, args, _ctx) {
+      Post.where(book_id: args[:id]).order("id DESC")
+    }
+  end
 end

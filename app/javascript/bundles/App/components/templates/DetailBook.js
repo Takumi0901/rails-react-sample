@@ -2,7 +2,8 @@
 import React from 'react'
 import FoundationHOC from '../../containers/hoc/FoundationHOC'
 import DetailContent from '../organisms/book/DetailContent'
-
+import RaisedButton from 'material-ui/RaisedButton/RaisedButton'
+import {FETCH_ALL_BOOKS_QUERY} from "../../actions/Books"
 
 type Props = {
   history: Object,
@@ -16,12 +17,26 @@ class DetailBook extends React.Component<Props> {
     super()
   }
 
+
+  postAction() {
+    this.props.createPost({
+      variables: {book_id: parseInt(this.props.match.params.bookId), subject: 'テスト1'}
+    })
+  }
+
   render() {
-    console.log('******************')
+    console.log('*****************')
     console.log(this.props)
-    console.log('******************')
+    console.log('*****************')
     return (
-      <DetailContent {...this.props}/>
+      <div>
+        <DetailContent {...this.props}/>
+        <RaisedButton
+          label={'コメント'}
+          onClick={this.postAction.bind(this)}
+          primary={true}
+        />
+      </div>
     )
   }
 }

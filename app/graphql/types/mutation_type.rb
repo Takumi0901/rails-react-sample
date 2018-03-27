@@ -9,4 +9,6 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :DestroyCategory, field: Mutations::DestroyCategory.field
 
   field :UpdatePicture, field: Mutations::UpdatePicturesMutation.field
+
+  field :CreatePost, field: Mutations::CreatePostMutation.field
 end

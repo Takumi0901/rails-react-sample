@@ -2,15 +2,12 @@ import { graphql, compose } from 'react-apollo'
 import {withRouter} from 'react-router-dom'
 import DetailBook from "../../components/templates/DetailBook"
 import {
-  FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY, FETCH_ALL_POSTS_QUERY
+  FETCH_ALL_BOOKS_QUERY, FETCH_BOOK_QUERY, CREATE_POST_MUTATION
 } from '../../actions/Books'
 import {FETCH_ALL_CATEGORIES_QUERY} from "../../actions/Category"
 
 
 export default withRouter(compose(
-  graphql(FETCH_ALL_POSTS_QUERY, {
-    name: 'postsData'
-  }),
   graphql(FETCH_ALL_BOOKS_QUERY, {
     name: 'booksData'
   }),
@@ -24,5 +21,8 @@ export default withRouter(compose(
   }),
   graphql(FETCH_ALL_CATEGORIES_QUERY, {
     name: 'categoryData'
-  })
+  }),
+  graphql(CREATE_POST_MUTATION, {
+    name: 'createPost'
+  }),
 )(DetailBook))
