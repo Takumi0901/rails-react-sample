@@ -11,7 +11,7 @@ export const FETCH_ALL_BOOKS_QUERY = gql`
 `
 
 export const FETCH_BOOK_QUERY = gql`
-  query fetchBook($id: ID!){
+  query fetchBook($id: ID!, $after: String){
     book(id: $id) {
       id
       name
@@ -20,13 +20,18 @@ export const FETCH_BOOK_QUERY = gql`
       author
       url
       picture
-      posts(id: $id) {
+      posts(id: $id, first: 6, after: $after) {
         edges {
           node {
             id
             subject
             created_at
           }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
         }
       }
     }
