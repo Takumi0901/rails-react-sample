@@ -4,9 +4,9 @@ import FoundationHOC from '../../containers/hoc/FoundationHOC'
 import DetailContent from '../organisms/book/DetailContent'
 import PostComments from '../organisms/book/PostComments'
 import CommentList from '../organisms/book/CommentList'
-import RaisedButton from 'material-ui/RaisedButton/RaisedButton'
 import {FETCH_BOOK_QUERY} from "../../actions/Books"
 import {FETCH_IS_ERROR_STATE, FETCH_SUCCEEDED_STATE} from "../../actions/Fetch"
+
 
 type Props = {
   history: Object,
@@ -17,33 +17,49 @@ type Props = {
   match: Object
 }
 
-class DetailBook extends React.Component<Props> {
+type State = {
+  initLength: number
+}
+
+class DetailBook extends React.Component<Props, State> {
   constructor() {
     super()
+    this.state = {
+      initLength: 0
+    }
   }
 
   componentDidMount() {
-    this.handleScroll = this.onScroll.bind(this)
-    window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.onScroll.bind(this))
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('scroll', this.onScroll.bind(this))
   }
+
+
+  componentDidUpdate(prevProps) {
+    const {bookData} = this.props
+    if(prevProps.bookData !== bookData && !prevProps.bookData.book && bookData.book) {
+      this.setState({
+        initLength: bookData.book.posts.edges.length
+      })
+    }
+  }
+
 
   onScroll() {
     const {bookData} = this.props
-    let scroll = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop
-    let element = document.getElementById('loader')
-    let height = element.offsetHeight
-    let targetBottom = element.offsetTop + height
-    let targetTop = targetBottom - window.innerHeight
+    const scroll = (document.documentElement && document.documentElement.scrollTop) || (document.body && document.body.scrollTop)
+    if(scroll) {
+      const element = document.getElementById('loader') || null
+      const height = element ? element.offsetHeight : null
+      const targetBottom = element ? element.offsetTop + height : 0
+      const targetTop = targetBottom - window.innerHeight
 
-    if (scroll <= targetBottom && scroll >= targetTop && !bookData.loading) {
-      console.log('*****************')
-      console.log('HOHOHOHOHOHOOHOHO')
-      console.log('*****************')
-      this.fetchMorePosts()
+      if (scroll <= targetBottom && scroll >= targetTop && !bookData.loading) {
+        this.fetchMorePosts()
+      }
     }
   }
 
@@ -76,10 +92,7 @@ class DetailBook extends React.Component<Props> {
       updateQuery: (previousResult, { fetchMoreResult }) => {
         const prevEdges = previousResult.book.posts.edges
         const newEdges = fetchMoreResult.book.posts.edges
-        console.log('newEdges.length *****************')
-        console.log(newEdges.length)
-        console.log('*****************')
-        if(newEdges.length) {
+        if(newEdges.length && newEdges.length <= this.state.initLength) {
           fetchMoreResult.book.posts.edges = [...prevEdges, ...newEdges]
           return fetchMoreResult
         } else {
@@ -95,13 +108,7 @@ class DetailBook extends React.Component<Props> {
         <DetailContent {...this.props}/>
         <PostComments onSubmit={this.postComment.bind(this)}/>
         <CommentList posts={this.props.bookData.book && this.props.bookData.book.posts}/>
-        <div id="loader">
-          <RaisedButton
-            label={"More"}
-            onClick={this.fetchMorePosts.bind(this)}
-            primary={true}
-          />
-        </div>
+        <div id="loader" style={{padding: '16px'}}></div>
       </div>
     )
   }

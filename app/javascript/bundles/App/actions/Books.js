@@ -20,7 +20,7 @@ export const FETCH_BOOK_QUERY = gql`
       author
       url
       picture
-      posts(id: $id, first: 6, after: $after) {
+      posts(id: $id, first: 3, after: $after) {
         edges {
           node {
             id
