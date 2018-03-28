@@ -12,7 +12,7 @@ type Props = {
   categories: Array<any>,
   onHandleSelect: Function,
   onHandleRemove: Function,
-  dropDownImage: Object
+  previewImage: Object
 }
 
 const UpdateBookFields = (props: Props) => (
@@ -29,7 +29,7 @@ const UpdateBookFields = (props: Props) => (
     <FieldDropZone
       onHandleSelect={props.onHandleSelect}
       onHandleRemove={props.onHandleRemove}
-      dropDownImage={props.dropDownImage}
+      previewImage={props.previewImage}
     />
     <Field
       component={FormField}

@@ -19,19 +19,19 @@ type State = {
   errors: Object,
   succeeded: boolean,
   deleted: boolean,
-  dropDownImage: Object
+  previewImage: Object
 }
 
 class Books extends React.Component<Props, State> {
   constructor() {
     super()
-    this.state = {...FETCH_INITIAL_STATE, dropDownImage: {}}
+    this.state = {...FETCH_INITIAL_STATE, previewImage: {}}
   }
 
   onHandleSelect(files) {
     const {updatePicture} = this.props
     this.setState({
-      dropDownImage: files[0]
+      previewImage: files[0]
     })
     updatePicture({
       variables: {path: files[0]}
@@ -45,23 +45,23 @@ class Books extends React.Component<Props, State> {
 
   onHandleRemove() {
     this.setState({
-      dropDownImage: {}
+      previewImage: {}
     })
   }
 
   onSubmit(values, e) {
     const {createBook} = this.props
     createBook({
-      variables: {...values, file: this.state.dropDownImage.name},
+      variables: {...values, file: this.state.previewImage.name},
       refetchQueries: [{
         query: FETCH_ALL_BOOKS_QUERY
       }]
     }).then(() => {
       e.reset()
-      this.setState({...FETCH_SUCCEEDED_STATE, dropDownImage: {}})
+      this.setState({...FETCH_SUCCEEDED_STATE, previewImage: {}})
     }).catch((errors) => {
       console.log(errors)
-      this.setState({...FETCH_IS_ERROR_STATE(errors), dropDownImage: {}})
+      this.setState({...FETCH_IS_ERROR_STATE(errors), previewImage: {}})
     })
   }
 

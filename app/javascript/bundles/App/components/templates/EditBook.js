@@ -22,18 +22,18 @@ type State = {
   errors: Object,
   succeeded: boolean,
   deleted: boolean,
-  dropDownImage: Object
+  previewImage: Object
 }
 
 class EditBook extends React.Component<Props, State> {
   constructor() {
     super()
-    this.state = {...FETCH_INITIAL_STATE, dropDownImage: {}}
+    this.state = {...FETCH_INITIAL_STATE, previewImage: {}}
   }
 
   onSubmit(values) {
     const {match, updateBook, bookData} = this.props
-    const file = this.state.dropDownImage.name ? this.state.dropDownImage.name : bookData.book.picture
+    const file = this.state.previewImage.name ? this.state.previewImage.name : bookData.book.picture
     updateBook({
       variables: {id: match.params.bookId, file: file, ...values},
       refetchQueries: [{
@@ -80,7 +80,7 @@ class EditBook extends React.Component<Props, State> {
   onHandleSelect(files) {
     const {updatePicture} = this.props
     this.setState({
-      dropDownImage: files[0]
+      previewImage: files[0]
     })
     updatePicture({
       variables: {path: files[0]}
@@ -94,7 +94,7 @@ class EditBook extends React.Component<Props, State> {
 
   onHandleRemove() {
     this.setState({
-      dropDownImage: {}
+      previewImage: {}
     })
   }
 
@@ -108,7 +108,7 @@ class EditBook extends React.Component<Props, State> {
     if(prevProps.bookData !== this.props.bookData && this.props.bookData.book) {
       const files = this.props.bookData.book.picture ? {picture: this.props.bookData.book.picture} : {}
       this.setState({
-        dropDownImage: files
+        previewImage: files
       })
     }
   }

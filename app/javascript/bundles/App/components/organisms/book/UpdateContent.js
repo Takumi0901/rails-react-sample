@@ -20,7 +20,7 @@ type Props = {
   categoryData: Object,
   onHandleSelect: Function,
   onHandleRemove: Function,
-  dropDownImage: String
+  previewImage: String
 }
 
 const UpdateBookContent = (props: Props) => {
@@ -45,7 +45,7 @@ const UpdateBookContent = (props: Props) => {
               categories={props.categoryData.categories}
               onHandleSelect={props.onHandleSelect}
               onHandleRemove={props.onHandleRemove}
-              dropDownImage={props.dropDownImage}/>
+              previewImage={props.previewImage}/>
             <UpdateActions
               onSubmit={props.onSubmit}
               onDelete={props.onDelete}
