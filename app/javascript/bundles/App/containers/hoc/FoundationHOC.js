@@ -6,7 +6,8 @@ import SideBar from '../../components/organisms/SideBar'
 import {DRAWER_VIEWPORT_PC, DRAWER_VIEWPORT_SP} from '../../actions/Drawer'
 
 type Props = {
-  booksData: any
+  booksData: any,
+  history: Object
 }
 
 type State = {
@@ -44,6 +45,17 @@ const FoundationHOC = (WrappedComponent: Object) => {
       } else {
         this.setState(DRAWER_VIEWPORT_PC)
       }
+    }
+
+    componentDidUpdate() {
+      setTimeout(() => {
+        /** ブラウザバックならreturn **/
+        if (this.props.history.action === 'POP') {
+          return
+        }
+        /** それ以外はページトップへ移動 **/
+        window.scrollTo(0, 0)
+      })
     }
 
     componentWillUnmount() {
