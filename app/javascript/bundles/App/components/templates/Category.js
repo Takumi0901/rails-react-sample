@@ -3,7 +3,6 @@ import React from 'react'
 import FoundationHOC from '../../containers/hoc/FoundationHOC'
 import CreateContent from '../organisms/category/CreateContent'
 import UpdateContent from '../organisms/category/UpdateContent'
-import SnackbarWithMessage from '../atoms/SnackbarWithMessage'
 import {FETCH_ALL_CATEGORIES_QUERY} from "../../actions/Category"
 import {
   FETCH_DELETED_STATE, FETCH_INITIAL_STATE, FETCH_IS_ERROR_STATE,
@@ -14,7 +13,9 @@ type Props = {
   createCategory: Function,
   destroyCategory: Function,
   updateCategory: Function,
-  categoryData: Object
+  categoryData: Object,
+  bookData: Object,
+  booksData: any
 }
 
 type State = {
@@ -107,13 +108,11 @@ class Category extends React.Component<Props, State> {
           onDelete={{}}
         />
         <UpdateContent
+          {...this.props}
           {...this.state}
           onSubmitDetail={this.onSubmitDetail.bind(this)}
           onClickDelete={this.onClickDelete.bind(this)}
           list={categoryData.categories}/>
-        <SnackbarWithMessage
-          {...this.state}
-          isError={Object.keys(this.state.errors).length > 0}/>
       </div>
     )
   }

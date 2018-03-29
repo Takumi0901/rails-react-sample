@@ -6,10 +6,10 @@ import Card from 'material-ui/Card/Card'
 import MenuItem from 'material-ui/MenuItem/MenuItem'
 import Delete from 'material-ui/svg-icons/action/delete'
 import {pink300} from 'material-ui/styles/colors'
-import FormField from "../../atoms/FormField"
 import {composeValidators, required} from "../../../helper/Validate"
+import FormField from "../../atoms/FormField"
 import AutoSave from '../AutoSave'
-
+import ErrorHOC from '../../../containers/hoc/ErrorHOC'
 
 type Props = {
   list: Array<any>,
@@ -54,4 +54,4 @@ const CategoriesContent = (props: Props) => {
   )
 }
 
-export default CategoriesContent
+export default ErrorHOC(CategoriesContent)
