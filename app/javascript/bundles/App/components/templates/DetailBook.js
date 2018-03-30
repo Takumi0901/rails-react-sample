@@ -107,8 +107,7 @@ class DetailBook extends React.Component<Props, State> {
       <div>
         <DetailContent {...this.props}/>
         <PostComments onSubmit={this.postComment.bind(this)}/>
-        <CommentList posts={this.props.bookData.book && this.props.bookData.book.posts}/>
-        <div id="loader" style={{padding: '16px'}}></div>
+        <CommentList data={this.props.bookData} {...this.state}/>
       </div>
     )
   }
