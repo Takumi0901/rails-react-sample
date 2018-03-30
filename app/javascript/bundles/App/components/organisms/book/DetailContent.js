@@ -15,7 +15,7 @@ type Props = {
 }
 
 const DetailBookContent = (props: Props) => {
-  if(props.bookData.book) {
+  if(props.bookData && props.bookData.book) {
     const [category] = props.categoryData.categories.filter(e => parseInt(e.id) === props.bookData.book.category_id)
     return (
       <Card style={{marginBottom: "24px"}}>

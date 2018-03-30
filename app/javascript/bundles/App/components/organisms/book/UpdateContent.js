@@ -5,7 +5,7 @@ import Card from 'material-ui/Card/Card'
 import CardTitle from 'material-ui/Card/CardTitle'
 import UpdateFields from '../../molecules/book/UpdateFields'
 import UpdateActions from '../../molecules/UpdateActions'
-import SnackbarWithMessage from '../../atoms/SnackbarWithMessage'
+import ErrorHOC from '../../../containers/hoc/ErrorHOC'
 
 
 type Props = {
@@ -53,16 +53,8 @@ const UpdateBookContent = (props: Props) => {
           </div>
         )}
       />
-      <SnackbarWithMessage
-        isError={
-          Object.keys(props.errors).length > 0 ||
-          (props.bookData && props.bookData.error && props.bookData.error.message.length > 0) ||
-          (props.bookData && props.booksData.error && props.booksData.error.message.length > 0)
-        }
-        succeeded={props.succeeded}
-        deleted={props.deleted}/>
     </Card>
   )
 }
 
-export default UpdateBookContent
+export default ErrorHOC(UpdateBookContent)

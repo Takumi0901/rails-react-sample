@@ -68,7 +68,8 @@ export const CREATE_BOOK_MUTATION = gql`
 `
 
 export const UPDATE_BOOK_MUTATION = gql`
-  mutation UpdateBook($id: ID!,
+  mutation UpdateBook(
+    $id: ID!,
     $name: String!,
     $description: String,
     $author: String!,
@@ -76,7 +77,8 @@ export const UPDATE_BOOK_MUTATION = gql`
     $url: String,
     $file: String
   ) {
-    UpdateBook(input: {id: $id,
+    UpdateBook(input: {
+      id: $id,
       name: $name,
       description: $description,
       author: $author,
