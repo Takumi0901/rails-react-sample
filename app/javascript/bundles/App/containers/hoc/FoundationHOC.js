@@ -7,7 +7,8 @@ import {DRAWER_VIEWPORT_PC, DRAWER_VIEWPORT_SP} from '../../actions/Drawer'
 
 type Props = {
   booksData: any,
-  history: Object
+  history: Object,
+  match: Object
 }
 
 type State = {
@@ -47,14 +48,17 @@ const FoundationHOC = (WrappedComponent: Object) => {
       }
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
       setTimeout(() => {
         /** ブラウザバックならreturn **/
         if (this.props.history.action === 'POP') {
           return
         }
-        /** それ以外はページトップへ移動 **/
-        window.scrollTo(0, 0)
+
+        if(prevProps.match !== this.props.match) {
+          /** それ以外はページトップへ移動 **/
+          window.scrollTo(0, 0)
+        }
       })
     }
 
