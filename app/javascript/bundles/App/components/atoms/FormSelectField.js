@@ -1,5 +1,5 @@
 // @flow
-import React from "react"
+import React from 'react'
 import SelectField from 'material-ui/SelectField/SelectField'
 import MenuItem from 'material-ui/MenuItem/MenuItem'
 
@@ -19,10 +19,15 @@ const FormSelectField = (props: Props) => {
       onChange={(e, index, value) => props.input.onChange(value)}
       floatingLabelText={props.floatingLabelText}
       fullWidth={props.fullWidth}
-      errorText={props.meta && props.meta.touched && props.meta.error}>
-      {props && props.list && props.list.map((e, index) => {
-        return (<MenuItem key={index} value={parseInt(e.id)} primaryText={e.name}/>)
-      })}
+      errorText={props.meta && props.meta.touched && props.meta.error}
+    >
+      {props &&
+        props.list &&
+        props.list.map((e, index) => {
+          return (
+            <MenuItem key={index} value={parseInt(e.id)} primaryText={e.name} />
+          )
+        })}
     </SelectField>
   )
 }

@@ -20,14 +20,21 @@ const SideBar = (props: Props) => (
     open={props.open}
     onRequestChange={() => props.onToggle()}
   >
-    <AppBar
-      title="ReactOnRails"
-      showMenuIconButton={false}
+    <AppBar title="ReactOnRails" showMenuIconButton={false} />
+    <LinkMenuItem
+      onToggle={props.onToggle}
+      docked={props.docked}
+      path={'/'}
+      name="本を登録する"
     />
-    <LinkMenuItem onToggle={props.onToggle} docked={props.docked} path={"/"} name="本を登録する"/>
-    <LinkMenuItem onToggle={props.onToggle} docked={props.docked} path={"/category"} name="カテゴリを登録する"/>
-    <Divider/>
-    <BookList {...props}/>
+    <LinkMenuItem
+      onToggle={props.onToggle}
+      docked={props.docked}
+      path={'/category'}
+      name="カテゴリを登録する"
+    />
+    <Divider />
+    <BookList {...props} />
   </Drawer>
 )
 

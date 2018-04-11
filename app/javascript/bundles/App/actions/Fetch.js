@@ -17,9 +17,9 @@ export const FETCH_DELETED_STATE = {
 }
 
 export const FETCH_IS_ERROR_STATE = (errors = {}) => {
-  return ({
+  return {
     succeeded: false,
     deleted: false,
     errors: errors
-  })
+  }
 }

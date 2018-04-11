@@ -1,11 +1,11 @@
-export const pushErrorMessage = ({isError = false, succeeded, deleted}) => {
-  if(isError) {
+export const pushErrorMessage = ({ isError = false, succeeded, deleted }) => {
+  if (isError) {
     return errorMessages.isError
   }
-  if(succeeded) {
+  if (succeeded) {
     return errorMessages.succeeded
   }
-  if(deleted) {
+  if (deleted) {
     return errorMessages.deleted
   }
 
@@ -13,7 +13,7 @@ export const pushErrorMessage = ({isError = false, succeeded, deleted}) => {
 }
 
 const errorMessages = {
-  isError: "isError",
-  succeeded: "isSucceeded",
-  deleted: "isDeleted"
+  isError: 'isError',
+  succeeded: 'isSucceeded',
+  deleted: 'isDeleted'
 }

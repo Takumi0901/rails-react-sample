@@ -1,17 +1,17 @@
-import React from 'react';
+import React from 'react'
 
 export default class CheckboxWithLabel extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {isChecked: false};
+    super(props)
+    this.state = { isChecked: false }
 
-// bind manually because React class components don't auto-bind
-// http://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding
-    this.onChange = this.onChange.bind(this);
+    // bind manually because React class components don't auto-bind
+    // http://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding
+    this.onChange = this.onChange.bind(this)
   }
 
   onChange() {
-    this.setState({isChecked: !this.state.isChecked});
+    this.setState({ isChecked: !this.state.isChecked })
   }
 
   render() {
@@ -24,6 +24,6 @@ export default class CheckboxWithLabel extends React.Component {
         />
         {this.state.isChecked ? this.props.labelOn : this.props.labelOff}
       </label>
-    );
+    )
   }
 }

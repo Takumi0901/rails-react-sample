@@ -1,18 +1,18 @@
 // @flow
-import React from "react"
-import {Field} from 'react-final-form'
-import {gray300} from 'material-ui/styles/colors'
-import FormField from "../../atoms/FormField"
-import FormSelectField from "../../atoms/FormSelectField"
-import FieldDropZone from "../FieldDropZone"
-import {required, url, composeValidators} from "../../../helper/Validate"
+import React from 'react'
+import { Field } from 'react-final-form'
+import { gray300 } from 'material-ui/styles/colors'
+import FormField from '../../atoms/FormField'
+import FormSelectField from '../../atoms/FormSelectField'
+import FieldDropZone from '../FieldDropZone'
+import { required, url, composeValidators } from '../../../helper/Validate'
 import CardText from 'material-ui/Card/CardText'
 
 type Props = {
   categories: Array<any>,
   onHandleSelect: Function,
   onHandleRemove: Function,
-  dropDownImage: Object
+  previewImage: Object
 }
 
 const UpdateBookFields = (props: Props) => (
@@ -29,8 +29,9 @@ const UpdateBookFields = (props: Props) => (
     <FieldDropZone
       onHandleSelect={props.onHandleSelect}
       onHandleRemove={props.onHandleRemove}
-      dropDownImage={props.dropDownImage}
+      previewImage={props.previewImage}
     />
+
     <Field
       component={FormField}
       name="author"
