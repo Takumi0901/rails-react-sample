@@ -30,10 +30,5 @@ type FormSpyProps = {
 }
 
 export default (props: FormSpyProps) => {
-  return (
-    <FormSpy
-      {...props}
-      component={AutoSave}
-    />
-  )
+  return <FormSpy {...props} component={AutoSave} />
 }

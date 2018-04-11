@@ -9,7 +9,9 @@ import { createUploadLink } from 'apollo-upload-client'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
-const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content')
+const csrfToken = document
+  .querySelector('meta[name=csrf-token]')
+  .getAttribute('content')
 const client = new ApolloClient({
   link: createUploadLink({
     credentials: 'same-origin',
@@ -21,12 +23,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
-const App = (props) => (
+const App = props => (
   <ApolloProvider client={client}>
     <Router>
-      <MuiThemeProvider>
-        {routes}
-      </MuiThemeProvider>
+      <MuiThemeProvider>{routes}</MuiThemeProvider>
     </Router>
   </ApolloProvider>
 )

@@ -1,10 +1,8 @@
 // @flow
-import React from "react"
+import React from 'react'
 
 const Loading = () => {
-  return (
-    <div id="loader" style={{textAlign: 'center'}}></div>
-  )
+  return <div id="loader" style={{ textAlign: 'center' }} />
 }
 
 export default Loading

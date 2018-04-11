@@ -3,7 +3,7 @@ import React from 'react'
 import NavBar from '../../components/atoms/NavBar'
 import Container from '../../components/atoms/Container'
 import SideBar from '../../components/organisms/SideBar'
-import {DRAWER_VIEWPORT_PC, DRAWER_VIEWPORT_SP} from '../../actions/Drawer'
+import { DRAWER_VIEWPORT_PC, DRAWER_VIEWPORT_SP } from '../../actions/Drawer'
 
 type Props = {
   booksData: any,
@@ -24,7 +24,6 @@ const FoundationHOC = (WrappedComponent: Object) => {
       window.addEventListener('load', this.handleResize.bind(this))
       window.addEventListener('resize', this.handleResize.bind(this))
     }
-
 
     handleToggle() {
       this.setState({
@@ -55,7 +54,7 @@ const FoundationHOC = (WrappedComponent: Object) => {
           return
         }
 
-        if(prevProps.match !== this.props.match) {
+        if (prevProps.match !== this.props.match) {
           /** それ以外はページトップへ移動 **/
           window.scrollTo(0, 0)
         }
@@ -68,19 +67,17 @@ const FoundationHOC = (WrappedComponent: Object) => {
     }
 
     render() {
-      const {booksData} = this.props
+      const { booksData } = this.props
       return (
         <div>
-          <NavBar
-            {...this.state}
-            onToggle={() => this.handleToggle()}/>
+          <NavBar {...this.state} onToggle={() => this.handleToggle()} />
           <SideBar
             {...this.state}
             onToggle={() => this.handleToggle()}
             list={booksData.books}
           />
           <Container docked={this.state.docked}>
-            <WrappedComponent {...this.props}/>
+            <WrappedComponent {...this.props} />
           </Container>
         </div>
       )

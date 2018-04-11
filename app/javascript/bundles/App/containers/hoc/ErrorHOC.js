@@ -25,36 +25,35 @@ const ErrorHOC = (WrappedComponent: Object) => {
     }
 
     errorCheck() {
-      if(Object.keys(this.props.errors).length > 0) {
-        this.setState({isError: true})
+      if (Object.keys(this.props.errors).length > 0) {
+        this.setState({ isError: true })
       }
 
       for (let i in this.props) {
         const obj = this.props[i]
         for (let k in obj) {
-          if(obj['error']) {
-            this.setState({isError: true})
+          if (obj['error']) {
+            this.setState({ isError: true })
           }
         }
       }
     }
 
-
     componentDidUpdate(prevProps, prevState) {
-      if(prevProps !== this.props) this.errorCheck()
+      if (prevProps !== this.props) this.errorCheck()
     }
 
-
     render() {
-      const {succeeded, deleted} = this.props
+      const { succeeded, deleted } = this.props
 
       return (
         <div>
-          <WrappedComponent {...this.props}/>
+          <WrappedComponent {...this.props} />
           <SnackbarWithMessage
             isError={this.state.isError}
             succeeded={succeeded}
-            deleted={deleted}/>
+            deleted={deleted}
+          />
         </div>
       )
     }

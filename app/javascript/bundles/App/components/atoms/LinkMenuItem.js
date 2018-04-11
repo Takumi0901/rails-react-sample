@@ -1,6 +1,6 @@
 // @flow
-import React from "react"
-import {Link} from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import MenuItem from 'material-ui/MenuItem/MenuItem'
 
 type Props = {
@@ -12,7 +12,9 @@ type Props = {
 
 const LinkMenuItem = (props: Props) => (
   <Link to={props.path}>
-    <MenuItem onClick={() => !props.docked && props.onToggle()}>{props.name}</MenuItem>
+    <MenuItem onClick={() => !props.docked && props.onToggle()}>
+      {props.name}
+    </MenuItem>
   </Link>
 )
 

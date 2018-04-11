@@ -1,7 +1,12 @@
 import Category from '../../components/templates/Category'
 import { graphql, compose } from 'react-apollo'
-import {FETCH_ALL_BOOKS_QUERY} from '../../actions/Books'
-import {CREATE_CATEGORY_MUTATION, FETCH_ALL_CATEGORIES_QUERY, DESTROY_CATEGORY_MUTATION, UPDATE_CATEGORY_MUTATION} from '../../actions/Category'
+import { FETCH_ALL_BOOKS_QUERY } from '../../actions/Books'
+import {
+  CREATE_CATEGORY_MUTATION,
+  FETCH_ALL_CATEGORIES_QUERY,
+  DESTROY_CATEGORY_MUTATION,
+  UPDATE_CATEGORY_MUTATION
+} from '../../actions/Category'
 
 export default compose(
   graphql(FETCH_ALL_BOOKS_QUERY, {
@@ -18,5 +23,5 @@ export default compose(
   }),
   graphql(DESTROY_CATEGORY_MUTATION, {
     name: 'destroyCategory'
-  }),
+  })
 )(Category)

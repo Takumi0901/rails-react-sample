@@ -1,4 +1,4 @@
-import gql from "graphql-tag"
+import gql from 'graphql-tag'
 
 export const FETCH_ALL_CATEGORIES_QUERY = gql`
   query {
@@ -11,7 +11,7 @@ export const FETCH_ALL_CATEGORIES_QUERY = gql`
 
 export const CREATE_CATEGORY_MUTATION = gql`
   mutation CreateCategory($name: String!) {
-    CreateCategory(input: {name: $name}) {
+    CreateCategory(input: { name: $name }) {
       category {
         name
       }
@@ -21,7 +21,7 @@ export const CREATE_CATEGORY_MUTATION = gql`
 
 export const UPDATE_CATEGORY_MUTATION = gql`
   mutation UpdateCategory($id: ID!, $name: String!) {
-    UpdateCategory(input: {id: $id, name: $name}) {
+    UpdateCategory(input: { id: $id, name: $name }) {
       category {
         name
       }
@@ -31,8 +31,10 @@ export const UPDATE_CATEGORY_MUTATION = gql`
 
 export const DESTROY_CATEGORY_MUTATION = gql`
   mutation DestroyCategory($id: ID!) {
-    DestroyCategory(input: {id: $id}) {
-      category {id}
+    DestroyCategory(input: { id: $id }) {
+      category {
+        id
+      }
     }
   }
 `

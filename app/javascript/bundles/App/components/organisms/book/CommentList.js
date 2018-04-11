@@ -1,21 +1,20 @@
 // @flow
-import React from "react"
+import React from 'react'
 import List from 'material-ui/List/List'
 import ListItem from 'material-ui/List/ListItem'
 import Subheader from 'material-ui/Subheader/Subheader'
 import Card from 'material-ui/Card/Card'
 import Loading from '../../atoms/Loading'
-import {formatDate} from '../../../helper/Date'
+import { formatDate } from '../../../helper/Date'
 
 type Props = {
   data: any
 }
 
 const CommentList = (props: Props) => {
-
   const list = props.data.book ? props.data.book.posts.edges : []
 
-  if(props.data.book) {
+  if (props.data.book) {
     return (
       <div>
         <Card>
@@ -26,12 +25,13 @@ const CommentList = (props: Props) => {
                 <ListItem
                   key={index}
                   primaryText={e.node.subject}
-                  secondaryText={formatDate(e.node.created_at)}/>
+                  secondaryText={formatDate(e.node.created_at)}
+                />
               )
             })}
           </List>
         </Card>
-        <Loading/>
+        <Loading />
       </div>
     )
   } else {
